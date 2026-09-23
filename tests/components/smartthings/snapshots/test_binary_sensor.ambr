@@ -254,6 +254,414 @@
     'state': 'off',
   })
 # ---
+# name: test_all_entities[da_ac_air_000001][binary_sensor.air_purifier_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.air_purifier_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': 'c02e8cfa-94ba-86f3-59a0-04a280950f2b_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ac_air_000001][binary_sensor.air_purifier_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Air purifier Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.air_purifier_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_ac_air_01011][binary_sensor.air_filter_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.air_filter_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': 'a5662f73-57d5-ba89-bf44-8b0008b8b2f3_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ac_air_01011][binary_sensor.air_filter_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Air filter Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.air_filter_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_ac_airsensor_01001][binary_sensor.eeomoniteo_peulreoseu_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.eeomoniteo_peulreoseu_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': 'a3a970ea-e09c-9c04-161b-94c934e21666_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ac_airsensor_01001][binary_sensor.eeomoniteo_peulreoseu_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: '에어모니터 플러스 Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.eeomoniteo_peulreoseu_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_ac_cac_01001][binary_sensor.ar_varanda_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.ar_varanda_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '23c6d296-4656-20d8-f6eb-2ff13e041753_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ac_cac_01001][binary_sensor.ar_varanda_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Ar Varanda Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.ar_varanda_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_ac_ehs_01001][binary_sensor.heat_pump_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.heat_pump_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '4165c51e-bf6b-c5b6-fd53-127d6248754b_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ac_ehs_01001][binary_sensor.heat_pump_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat pump Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_ac_rac_000001][binary_sensor.theater_ac_office_granit_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.theater_ac_office_granit_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '96a5ef74-5832-a84b-f1f7-ca799957065d_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ac_rac_000001][binary_sensor.theater_ac_office_granit_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'AC Office Granit Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.theater_ac_office_granit_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_ac_rac_000003][binary_sensor.clim_salon_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.clim_salon_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '1e3f7ca2-e005-e1a4-f6d7-bc231e3f7977_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ac_rac_000003][binary_sensor.clim_salon_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Clim Salon Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.clim_salon_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_ac_rac_01001][binary_sensor.theater_aire_dormitorio_principal_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.theater_aire_dormitorio_principal_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '4ece486b-89db-f06a-d54d-748b676b4d8e_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ac_rac_01001][binary_sensor.theater_aire_dormitorio_principal_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Aire Dormitorio Principal Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.theater_aire_dormitorio_principal_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
 # name: test_all_entities[da_ks_cooktop_000001][binary_sensor.table_de_cuisson_child_lock-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -405,6 +813,57 @@
     'state': 'off',
   })
 # ---
+# name: test_all_entities[da_ks_cooktop_000001][binary_sensor.table_de_cuisson_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.table_de_cuisson_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '5c202ad1-d112-d746-50b8-bd76a554b362_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ks_cooktop_000001][binary_sensor.table_de_cuisson_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Table de cuisson Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.table_de_cuisson_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
 # name: test_all_entities[da_ks_cooktop_31001][binary_sensor.induction_hob_power-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -450,6 +909,108 @@
     }),
     'context': <ANY>,
     'entity_id': 'binary_sensor.induction_hob_power',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_ks_cooktop_31001][binary_sensor.induction_hob_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.induction_hob_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '808dbd84-f357-47e2-a0cd-3b66fa22d584_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ks_cooktop_31001][binary_sensor.induction_hob_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Induction Hob Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.induction_hob_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_ks_hood_01001][binary_sensor.range_hood_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.range_hood_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': 'fa5fca25-fa7a-1807-030a-2f72ee0f7bff_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ks_hood_01001][binary_sensor.range_hood_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Range hood Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.range_hood_update',
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,
@@ -658,6 +1219,57 @@
     'state': 'off',
   })
 # ---
+# name: test_all_entities[da_ks_microwave_0101x][binary_sensor.theater_microwave_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.theater_microwave_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '2bad3237-4886-e699-1b90-4a51a3d55c8a_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ks_microwave_0101x][binary_sensor.theater_microwave_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Microwave Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.theater_microwave_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
 # name: test_all_entities[da_ks_oven_01061][binary_sensor.oven_child_lock-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -807,6 +1419,57 @@
     'last_reported': <ANY>,
     'last_updated': <ANY>,
     'state': 'on',
+  })
+# ---
+# name: test_all_entities[da_ks_oven_01061][binary_sensor.oven_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.oven_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '9447959a-0dfa-6b27-d40d-650da525c53f_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ks_oven_01061][binary_sensor.oven_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Oven Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.oven_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
   })
 # ---
 # name: test_all_entities[da_ks_oven_0107x][binary_sensor.kitchen_oven_child_lock-entry]
@@ -1008,6 +1671,57 @@
     'last_reported': <ANY>,
     'last_updated': <ANY>,
     'state': 'on',
+  })
+# ---
+# name: test_all_entities[da_ks_oven_0107x][binary_sensor.kitchen_oven_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.kitchen_oven_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '199d7863-ad04-793d-176d-658f10062575_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ks_oven_0107x][binary_sensor.kitchen_oven_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Kitchen oven Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.kitchen_oven_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
   })
 # ---
 # name: test_all_entities[da_ks_range_0101x][binary_sensor.vulcan_child_lock-entry]
@@ -1261,6 +1975,57 @@
     'state': 'off',
   })
 # ---
+# name: test_all_entities[da_ks_range_0101x][binary_sensor.vulcan_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.vulcan_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '2c3cbaa0-1899-5ddc-7b58-9d657bd48f18_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ks_range_0101x][binary_sensor.vulcan_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Vulcan Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.vulcan_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
 # name: test_all_entities[da_ks_walloven_0107x][binary_sensor.four_child_lock-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -1406,6 +2171,57 @@
     }),
     'context': <ANY>,
     'entity_id': 'binary_sensor.four_remote_control',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_ks_walloven_0107x][binary_sensor.four_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.four_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '1c77a562-df00-7d6a-ca73-b67f6d4c4607_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ks_walloven_0107x][binary_sensor.four_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Four Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.four_update',
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,
@@ -1559,6 +2375,57 @@
     }),
     'context': <ANY>,
     'entity_id': 'binary_sensor.theater_refrigerator_fridge_door',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_ref_normal_000001][binary_sensor.theater_refrigerator_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.theater_refrigerator_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '7db87911-7dce-1cf2-7119-b953432a2f09_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ref_normal_000001][binary_sensor.theater_refrigerator_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Refrigerator Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.theater_refrigerator_update',
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,
@@ -1769,6 +2636,57 @@
     'state': 'off',
   })
 # ---
+# name: test_all_entities[da_ref_normal_01001][binary_sensor.refrigerator_1_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.refrigerator_1_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '7d3feb98-8a36-4351-c362-5e21ad3a78dd_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ref_normal_01001][binary_sensor.refrigerator_1_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Refrigerator 1 Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.refrigerator_1_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
 # name: test_all_entities[da_ref_normal_01011][binary_sensor.frigo_filter_status-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -1922,6 +2840,57 @@
     'state': 'off',
   })
 # ---
+# name: test_all_entities[da_ref_normal_01011][binary_sensor.frigo_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.frigo_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '5758b2ec-563e-f39b-ec39-208e54aabf60_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ref_normal_01011][binary_sensor.frigo_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Frigo Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.frigo_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
 # name: test_all_entities[da_ref_normal_01011_onedoor][binary_sensor.lodowka_door-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -1967,6 +2936,57 @@
     }),
     'context': <ANY>,
     'entity_id': 'binary_sensor.lodowka_door',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_ref_normal_01011_onedoor][binary_sensor.lodowka_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.lodowka_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '271d82e0-5b0c-e4b8-058e-cdf23a188610_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_ref_normal_01011_onedoor][binary_sensor.lodowka_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Lodówka Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.lodowka_update',
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,
@@ -2227,6 +3247,261 @@
     'state': 'off',
   })
 # ---
+# name: test_all_entities[da_rvc_map_01011][binary_sensor.robot_vacuum_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.robot_vacuum_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '01b28624-5907-c8bc-0325-8ad23f03a637_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_rvc_map_01011][binary_sensor.robot_vacuum_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Robot Vacuum Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.robot_vacuum_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_rvc_normal_000001][binary_sensor.theater_robot_vacuum_1_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.theater_robot_vacuum_1_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '3442dfc6-17c0-a65f-dae0-4c6e01786f44_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_rvc_normal_000001][binary_sensor.theater_robot_vacuum_1_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Robot vacuum 1 Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.theater_robot_vacuum_1_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_sac_ehs_000001_sub][binary_sensor.eco_heating_system_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.eco_heating_system_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '1f98ebd0-ac48-d802-7f62-000001200100_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_sac_ehs_000001_sub][binary_sensor.eco_heating_system_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Eco Heating System Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.eco_heating_system_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_sac_ehs_000001_sub_1][binary_sensor.heat_pump_main_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.heat_pump_main_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '6a7d5349-0a66-0277-058d-000001200101_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_sac_ehs_000001_sub_1][binary_sensor.heat_pump_main_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Heat Pump Main Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.heat_pump_main_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_sac_ehs_000002_sub][binary_sensor.warmepumpe_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.warmepumpe_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '3810e5ad-5351-d9f9-12ff-000001200000_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_sac_ehs_000002_sub][binary_sensor.warmepumpe_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Wärmepumpe Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.warmepumpe_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
 # name: test_all_entities[da_vc_stick_01001][binary_sensor.stick_vacuum_charging-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -2379,6 +3654,57 @@
     'state': 'on',
   })
 # ---
+# name: test_all_entities[da_vc_stick_01001][binary_sensor.stick_vacuum_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.stick_vacuum_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': 'e1f93c0c-6fe0-c65a-a314-c8f7b163c86b_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_vc_stick_01001][binary_sensor.stick_vacuum_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Stick vacuum Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.stick_vacuum_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
 # name: test_all_entities[da_wm_dw_000001][binary_sensor.theater_dishwasher_child_lock-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -2524,6 +3850,57 @@
     }),
     'context': <ANY>,
     'entity_id': 'binary_sensor.theater_dishwasher_remote_control',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_wm_dw_000001][binary_sensor.theater_dishwasher_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.theater_dishwasher_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': 'f36dc7ce-cac0-0667-dc14-a3704eb5e676_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_dw_000001][binary_sensor.theater_dishwasher_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Dishwasher Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.theater_dishwasher_update',
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,
@@ -2681,6 +4058,57 @@
     'state': 'off',
   })
 # ---
+# name: test_all_entities[da_wm_dw_01011][binary_sensor.dishwasher_1_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.dishwasher_1_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '7ff318f3-3772-524d-3c9f-72fcd26413ed_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_dw_01011][binary_sensor.dishwasher_1_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Dishwasher 1 Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.dishwasher_1_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
 # name: test_all_entities[da_wm_mf_01001][binary_sensor.filtro_in_microfibra_filter_blockage-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -2777,6 +4205,57 @@
     }),
     'context': <ANY>,
     'entity_id': 'binary_sensor.filtro_in_microfibra_filter_status',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_wm_mf_01001][binary_sensor.filtro_in_microfibra_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.filtro_in_microfibra_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '42e80b4d-24c4-a810-11b3-f90375c56a39_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_mf_01001][binary_sensor.filtro_in_microfibra_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Filtro in microfibra Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.filtro_in_microfibra_update',
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,
@@ -2984,6 +4463,57 @@
     'state': 'off',
   })
 # ---
+# name: test_all_entities[da_wm_sc_000001][binary_sensor.airdresser_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.airdresser_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': 'b93211bf-9d96-bd21-3b2f-964fcc87f5cc_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_sc_000001][binary_sensor.airdresser_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'AirDresser Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.airdresser_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
 # name: test_all_entities[da_wm_wd_000001][binary_sensor.theater_dryer_child_lock-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -3129,6 +4659,57 @@
     }),
     'context': <ANY>,
     'entity_id': 'binary_sensor.theater_dryer_remote_control',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_wm_wd_000001][binary_sensor.theater_dryer_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.theater_dryer_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '02f7256e-8353-5bdd-547f-bd5b1647e01b_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_wd_000001][binary_sensor.theater_dryer_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Dryer Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.theater_dryer_update',
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,
@@ -3336,6 +4917,57 @@
     'state': 'off',
   })
 # ---
+# name: test_all_entities[da_wm_wd_000001_1][binary_sensor.seca_roupa_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.seca_roupa_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '3a6c4e05-811d-5041-e956-3d04c424cbcd_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_wd_000001_1][binary_sensor.seca_roupa_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Seca-Roupa Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.seca_roupa_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
 # name: test_all_entities[da_wm_wd_000001_1][binary_sensor.seca_roupa_wrinkle_prevent_active-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -3531,6 +5163,57 @@
     }),
     'context': <ANY>,
     'entity_id': 'binary_sensor.trockner_remote_control',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
+# name: test_all_entities[da_wm_wd_01011][binary_sensor.trockner_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.trockner_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '3d39866c-7716-5259-44f0-fd7025efd85f_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_wd_01011][binary_sensor.trockner_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Trockner Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.trockner_update',
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,
@@ -3738,6 +5421,57 @@
     'state': 'off',
   })
 # ---
+# name: test_all_entities[da_wm_wm_000001][binary_sensor.theater_washer_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.theater_washer_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': 'f984b91d-f250-9d42-3436-33f09a422a47_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_wm_000001][binary_sensor.theater_washer_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Washer Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.theater_washer_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
 # name: test_all_entities[da_wm_wm_000001_1][binary_sensor.washing_machine_child_lock-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -3889,6 +5623,57 @@
     'state': 'on',
   })
 # ---
+# name: test_all_entities[da_wm_wm_000001_1][binary_sensor.washing_machine_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.washing_machine_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '63803fae-cbed-f356-a063-2cf148ae3ca7_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_wm_000001_1][binary_sensor.washing_machine_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Washing Machine Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.washing_machine_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
+  })
+# ---
 # name: test_all_entities[da_wm_wm_01011][binary_sensor.machine_a_laver_child_lock-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -4038,6 +5823,57 @@
     'last_reported': <ANY>,
     'last_updated': <ANY>,
     'state': 'on',
+  })
+# ---
+# name: test_all_entities[da_wm_wm_01011][binary_sensor.machine_a_laver_update-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'binary_sensor',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'binary_sensor.machine_a_laver_update',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Update',
+    'options': dict({
+    }),
+    'original_device_class': <BinarySensorDeviceClass.UPDATE: 'update'>,
+    'original_icon': None,
+    'original_name': 'Update',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': 'b854ca5f-dc54-140d-6349-758b4d973c41_main_samsungce.softwareUpdate_newVersionAvailable_newVersionAvailable',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_wm_01011][binary_sensor.machine_a_laver_update-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.DEVICE_CLASS: 'device_class'>: 'update',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Machine à Laver Update',
+    }),
+    'context': <ANY>,
+    'entity_id': 'binary_sensor.machine_a_laver_update',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'off',
   })
 # ---
 # name: test_all_entities[da_wm_wm_100001][binary_sensor.washer_1_power-entry]

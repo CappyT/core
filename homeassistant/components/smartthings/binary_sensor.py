@@ -24,7 +24,7 @@ from .entity import SmartThingsEntity
 class SmartThingsBinarySensorEntityDescription(BinarySensorEntityDescription):
     """Describe a SmartThings binary sensor entity."""
 
-    is_on_key: str
+    is_on_key: str | bool
     category_device_class: dict[Category | str, BinarySensorDeviceClass] | None = None
     category: set[Category] | None = None
     exists_fn: (
@@ -242,6 +242,14 @@ CAPABILITY_TO_SENSORS: dict[
             key=Attribute.STATUS,
             is_on_key="charging",
             device_class=BinarySensorDeviceClass.BATTERY_CHARGING,
+            entity_category=EntityCategory.DIAGNOSTIC,
+        )
+    },
+    Capability.SAMSUNG_CE_SOFTWARE_UPDATE: {
+        Attribute.NEW_VERSION_AVAILABLE: SmartThingsBinarySensorEntityDescription(
+            key=Attribute.NEW_VERSION_AVAILABLE,
+            device_class=BinarySensorDeviceClass.UPDATE,
+            is_on_key=True,
             entity_category=EntityCategory.DIAGNOSTIC,
         )
     },
