@@ -29,6 +29,8 @@ from . import (
 
 from tests.common import MockConfigEntry
 
+WASHER_ID = "b854ca5f-dc54-140d-6349-758b4d973c41"
+
 
 @pytest.mark.usefixtures("entity_registry_enabled_by_default")
 async def test_all_entities(
@@ -371,3 +373,75 @@ async def test_select_dishwasher_washing_option(
             ),
         ]
     )
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+async def test_select_status_only_option(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+) -> None:
+    """Test a mode that the device reports but does not accept as a command."""
+    await setup_integration(hass, mock_config_entry)
+
+    with pytest.raises(
+        ServiceValidationError, match="others can only be set on the device"
+    ):
+        await hass.services.async_call(
+            SELECT_DOMAIN,
+            SERVICE_SELECT_OPTION,
+            {
+                ATTR_ENTITY_ID: "select.machine_a_laver_washer_mode",
+                ATTR_OPTION: "others",
+            },
+            blocking=True,
+        )
+    devices.execute_device_command.assert_not_called()
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+async def test_select_washer_mode(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+) -> None:
+    """Test selecting a washer mode sends the device value."""
+    await setup_integration(hass, mock_config_entry)
+
+    await hass.services.async_call(
+        SELECT_DOMAIN,
+        SERVICE_SELECT_OPTION,
+        {
+            ATTR_ENTITY_ID: "select.machine_a_laver_washer_mode",
+            ATTR_OPTION: "quick_wash",
+        },
+        blocking=True,
+    )
+    devices.execute_device_command.assert_called_once_with(
+        WASHER_ID,
+        Capability.HCA_WASHER_MODE,
+        Command.SET_MODE,
+        "hca.main",
+        argument="quickWash",
+    )
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+async def test_select_status_only_option_listed_once(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+) -> None:
+    """Test a status-only mode is listed once when the device also reports it."""
+    set_attribute_value(
+        devices,
+        Capability.HCA_WASHER_MODE,
+        Attribute.SUPPORTED_MODES,
+        ["normal", "quickWash", "others"],
+        component="hca.main",
+    )
+    await setup_integration(hass, mock_config_entry)
+
+    assert hass.states.get("select.machine_a_laver_washer_mode").attributes[
+        ATTR_OPTIONS
+    ] == ["normal", "quick_wash", "others"]

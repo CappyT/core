@@ -149,6 +149,22 @@ DISHWASHER_WASHING_COURSE_TO_HA = {
 }
 
 
+WASHER_MODE_TO_HA = {
+    "normal": "normal",
+    "quickWash": "quick_wash",
+    "eco": "eco",
+    "mix": "mix",
+    "spinOnly": "spin_only",
+}
+
+DRYER_MODE_TO_HA = {
+    "normal": "normal",
+    "quickDry": "quick_dry",
+    "mix": "mix",
+    "timeDry": "time_dry",
+}
+
+
 @dataclass(frozen=True, kw_only=True)
 class SmartThingsSelectDescription(SelectEntityDescription):
     """Class describing SmartThings select entities."""
@@ -164,6 +180,8 @@ class SmartThingsSelectDescription(SelectEntityDescription):
     extra_components: list[str] | None = None
     capability_ignore_list: list[Capability] | None = None
     value_is_integer: bool = False
+    # Values the device reports but does not accept as a command
+    status_only_options: tuple[str, ...] = ()
 
 
 CAPABILITIES_TO_SELECT: dict[Capability | str, SmartThingsSelectDescription] = {
@@ -318,6 +336,28 @@ CAPABILITIES_TO_SELECT: dict[Capability | str, SmartThingsSelectDescription] = {
         options_map=CLEANING_TYPE_TO_HA,
         entity_category=EntityCategory.CONFIG,
     ),
+    Capability.HCA_WASHER_MODE: SmartThingsSelectDescription(
+        key=Capability.HCA_WASHER_MODE,
+        translation_key="washer_mode",
+        options_attribute=Attribute.SUPPORTED_MODES,
+        status_attribute=Attribute.MODE,
+        command=Command.SET_MODE,
+        options_map=WASHER_MODE_TO_HA,
+        entity_category=EntityCategory.CONFIG,
+        extra_components=["hca.main"],
+        status_only_options=("others",),
+    ),
+    Capability.HCA_DRYER_MODE: SmartThingsSelectDescription(
+        key=Capability.HCA_DRYER_MODE,
+        translation_key="dryer_mode",
+        options_attribute=Attribute.SUPPORTED_MODES,
+        status_attribute=Attribute.MODE,
+        command=Command.SET_MODE,
+        options_map=DRYER_MODE_TO_HA,
+        entity_category=EntityCategory.CONFIG,
+        extra_components=["hca.main"],
+        status_only_options=("others",),
+    ),
 }
 DISHWASHER_WASHING_OPTIONS_TO_SELECT: dict[
     Attribute | str, SmartThingsSelectDescription
@@ -447,6 +487,15 @@ class SmartThingsSelectEntity(SmartThingsEntity, SelectEntity):
             ]
         if self.entity_description.value_is_integer:
             options = [str(option) for option in options]
+        options = [
+            option
+            for option in options
+            if option not in self.entity_description.status_only_options
+        ]
+        if (
+            current_option := self.current_option
+        ) in self.entity_description.status_only_options:
+            options.append(current_option)
         return options
 
     @property
@@ -490,6 +539,8 @@ class SmartThingsSelectEntity(SmartThingsEntity, SelectEntity):
     async def async_select_option(self, option: str) -> None:
         """Select an option."""
         self._validate_before_select()
+        if option in self.entity_description.status_only_options:
+            raise ServiceValidationError(f"{option} can only be set on the device")
         new_option: str | int = option
         if self.entity_description.options_map:
             options = self._device_options()

@@ -1479,6 +1479,67 @@
     'state': 'stop',
   })
 # ---
+# name: test_all_entities[da_wm_wd_000001][select.theater_dryer_dryer_mode-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'time_dry',
+        'quick_dry',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.theater_dryer_dryer_mode',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Dryer mode',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Dryer mode',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'dryer_mode',
+    'unique_id': '02f7256e-8353-5bdd-547f-bd5b1647e01b_hca.main_hca.dryerMode_mode_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_wd_000001][select.theater_dryer_dryer_mode-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Dryer Dryer mode',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'time_dry',
+        'quick_dry',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.theater_dryer_dryer_mode',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'normal',
+  })
+# ---
 # name: test_all_entities[da_wm_wd_000001_1][select.seca_roupa-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -1540,6 +1601,69 @@
     'state': 'stop',
   })
 # ---
+# name: test_all_entities[da_wm_wd_000001_1][select.seca_roupa_dryer_mode-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'quick_dry',
+        'mix',
+        'time_dry',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.seca_roupa_dryer_mode',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Dryer mode',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Dryer mode',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'dryer_mode',
+    'unique_id': '3a6c4e05-811d-5041-e956-3d04c424cbcd_hca.main_hca.dryerMode_mode_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_wd_000001_1][select.seca_roupa_dryer_mode-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Seca-Roupa Dryer mode',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'quick_dry',
+        'mix',
+        'time_dry',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.seca_roupa_dryer_mode',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'normal',
+  })
+# ---
 # name: test_all_entities[da_wm_wd_01011][select.trockner-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -1599,6 +1723,67 @@
     'last_reported': <ANY>,
     'last_updated': <ANY>,
     'state': 'stop',
+  })
+# ---
+# name: test_all_entities[da_wm_wd_01011][select.trockner_dryer_mode-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'quick_dry',
+        'time_dry',
+        'others',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.trockner_dryer_mode',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Dryer mode',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Dryer mode',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'dryer_mode',
+    'unique_id': '3d39866c-7716-5259-44f0-fd7025efd85f_hca.main_hca.dryerMode_mode_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_wd_01011][select.trockner_dryer_mode-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Trockner Dryer mode',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'quick_dry',
+        'time_dry',
+        'others',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.trockner_dryer_mode',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'others',
   })
 # ---
 # name: test_all_entities[da_wm_wm_000001][select.theater_washer-entry]
@@ -1796,6 +1981,65 @@
     'state': 'high',
   })
 # ---
+# name: test_all_entities[da_wm_wm_000001][select.theater_washer_washer_mode-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'quick_wash',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.theater_washer_washer_mode',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Washer mode',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Washer mode',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'washer_mode',
+    'unique_id': 'f984b91d-f250-9d42-3436-33f09a422a47_hca.main_hca.washerMode_mode_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_wm_000001][select.theater_washer_washer_mode-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Washer Washer mode',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'quick_wash',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.theater_washer_washer_mode',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'normal',
+  })
+# ---
 # name: test_all_entities[da_wm_wm_000001][select.theater_washer_water_temperature-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -1991,6 +2235,69 @@
     'last_reported': <ANY>,
     'last_updated': <ANY>,
     'state': '1400',
+  })
+# ---
+# name: test_all_entities[da_wm_wm_000001_1][select.washing_machine_washer_mode-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'quick_wash',
+        'mix',
+        'eco',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.washing_machine_washer_mode',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Washer mode',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Washer mode',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'washer_mode',
+    'unique_id': '63803fae-cbed-f356-a063-2cf148ae3ca7_hca.main_hca.washerMode_mode_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_wm_000001_1][select.washing_machine_washer_mode-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Washing Machine Washer mode',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'quick_wash',
+        'mix',
+        'eco',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.washing_machine_washer_mode',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'mix',
   })
 # ---
 # name: test_all_entities[da_wm_wm_000001_1][select.washing_machine_water_temperature-entry]
@@ -2316,6 +2623,73 @@
     'last_reported': <ANY>,
     'last_updated': <ANY>,
     'state': '1000',
+  })
+# ---
+# name: test_all_entities[da_wm_wm_01011][select.machine_a_laver_washer_mode-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'quick_wash',
+        'mix',
+        'eco',
+        'spin_only',
+        'others',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': <EntityCategory.CONFIG: 'config'>,
+    'entity_id': 'select.machine_a_laver_washer_mode',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Washer mode',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Washer mode',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'washer_mode',
+    'unique_id': 'b854ca5f-dc54-140d-6349-758b4d973c41_hca.main_hca.washerMode_mode_mode',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_wm_01011][select.machine_a_laver_washer_mode-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Machine à Laver Washer mode',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'normal',
+        'quick_wash',
+        'mix',
+        'eco',
+        'spin_only',
+        'others',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.machine_a_laver_washer_mode',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'others',
   })
 # ---
 # name: test_all_entities[da_wm_wm_01011][select.machine_a_laver_water_temperature-entry]

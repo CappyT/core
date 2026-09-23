@@ -301,6 +301,16 @@
           "upper_express": "Upper express"
         }
       },
+      "dryer_mode": {
+        "name": "[%key:component::smartthings::entity::sensor::dryer_mode::name%]",
+        "state": {
+          "mix": "Mix",
+          "normal": "[%key:common::state::normal%]",
+          "others": "[%key:component::smartthings::entity::select::washer_mode::state::others%]",
+          "quick_dry": "Quick dry",
+          "time_dry": "Time dry"
+        }
+      },
       "dust_filter_alarm": {
         "name": "Dust filter alarm threshold",
         "unit_of_measurement": "hours"
@@ -418,6 +428,17 @@
           "no_spin": "No spin",
           "none": "None",
           "rinse_hold": "Rinse hold"
+        }
+      },
+      "washer_mode": {
+        "name": "[%key:component::smartthings::entity::sensor::washer_mode::name%]",
+        "state": {
+          "eco": "Eco",
+          "mix": "[%key:component::smartthings::entity::select::dryer_mode::state::mix%]",
+          "normal": "[%key:common::state::normal%]",
+          "others": "Other",
+          "quick_wash": "Quick wash",
+          "spin_only": "Spin only"
         }
       },
       "water_temperature": {
