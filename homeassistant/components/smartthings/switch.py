@@ -101,6 +101,15 @@ CAPABILITY_TO_COMMAND_SWITCHES: dict[
         command=Command.SET_DRYER_WRINKLE_PREVENT,
         entity_category=EntityCategory.CONFIG,
     ),
+    Capability.SAMSUNG_CE_DRYER_AUTO_CYCLE_LINK: (
+        SmartThingsCommandSwitchEntityDescription(
+            key=Capability.SAMSUNG_CE_DRYER_AUTO_CYCLE_LINK,
+            translation_key="auto_cycle_link",
+            status_attribute=Attribute.DRYER_AUTO_CYCLE_LINK,
+            command=Command.SET_DRYER_AUTO_CYCLE_LINK,
+            entity_category=EntityCategory.CONFIG,
+        )
+    ),
     Capability.SAMSUNG_CE_STEAM_CLOSET_AUTO_CYCLE_LINK: (
         SmartThingsCommandSwitchEntityDescription(
             key=Capability.SAMSUNG_CE_STEAM_CLOSET_AUTO_CYCLE_LINK,
