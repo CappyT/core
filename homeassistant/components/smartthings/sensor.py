@@ -155,10 +155,11 @@ DISPENSER_LEVEL_MAP = {
 }
 
 
-def _dispenser_level_supported(status: Status) -> bool:
-    """Return whether the washer measures the level of an auto dispenser tank."""
-    # Washers without a level sensor report "unknown" or nothing at all
-    return status.value not in (None, "unknown")
+def _dispenser_reported(status: Status) -> bool:
+    """Return whether the appliance reports a property of an auto dispenser."""
+    # Appliances without the sensor or the dispenser report "unknown", "none" or
+    # nothing at all
+    return status.value not in (None, "unknown", "none")
 
 
 WASHER_OPTIONS = ["pause", "run", "stop"]
@@ -389,7 +390,7 @@ CAPABILITY_TO_SENSORS: dict[
                 options=list(DISPENSER_LEVEL_MAP.values()),
                 options_map=DISPENSER_LEVEL_MAP,
                 entity_category=EntityCategory.DIAGNOSTIC,
-                exists_fn=_dispenser_level_supported,
+                exists_fn=_dispenser_reported,
             )
         ]
     },
@@ -411,6 +412,7 @@ CAPABILITY_TO_SENSORS: dict[
                 options=list(DISPENSER_TYPE_MAP.values()),
                 options_map=DISPENSER_TYPE_MAP,
                 entity_category=EntityCategory.DIAGNOSTIC,
+                exists_fn=_dispenser_reported,
             )
         ],
     },
@@ -1014,7 +1016,7 @@ CAPABILITY_TO_SENSORS: dict[
                 options=list(DISPENSER_LEVEL_MAP.values()),
                 options_map=DISPENSER_LEVEL_MAP,
                 entity_category=EntityCategory.DIAGNOSTIC,
-                exists_fn=_dispenser_level_supported,
+                exists_fn=_dispenser_reported,
             )
         ]
     },
@@ -1036,6 +1038,7 @@ CAPABILITY_TO_SENSORS: dict[
                 options=list(DISPENSER_TYPE_MAP.values()),
                 options_map=DISPENSER_TYPE_MAP,
                 entity_category=EntityCategory.DIAGNOSTIC,
+                exists_fn=_dispenser_reported,
             )
         ],
     },

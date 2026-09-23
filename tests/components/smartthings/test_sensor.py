@@ -454,29 +454,62 @@ async def test_stick_cleaner_operating_state_is_mapped(
 
 @pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
 @pytest.mark.parametrize(
-    ("value", "exists"),
+    ("capability", "attribute", "entity_id", "value", "exists"),
     [
-        pytest.param("normal", True, id="measured"),
-        pytest.param("unknown", False, id="unknown"),
-        pytest.param(None, False, id="none"),
+        pytest.param(
+            Capability.SAMSUNG_CE_AUTO_DISPENSE_DETERGENT,
+            Attribute.REMAINING_AMOUNT,
+            "sensor.machine_a_laver_detergent_level",
+            "normal",
+            True,
+            id="level_measured",
+        ),
+        pytest.param(
+            Capability.SAMSUNG_CE_AUTO_DISPENSE_DETERGENT,
+            Attribute.REMAINING_AMOUNT,
+            "sensor.machine_a_laver_detergent_level",
+            "unknown",
+            False,
+            id="level_unknown",
+        ),
+        pytest.param(
+            Capability.SAMSUNG_CE_AUTO_DISPENSE_DETERGENT,
+            Attribute.REMAINING_AMOUNT,
+            "sensor.machine_a_laver_detergent_level",
+            None,
+            False,
+            id="level_none",
+        ),
+        pytest.param(
+            Capability.SAMSUNG_CE_DETERGENT_STATE,
+            Attribute.DETERGENT_TYPE,
+            "sensor.machine_a_laver_detergent_type",
+            "liquid",
+            True,
+            id="type_reported",
+        ),
+        pytest.param(
+            Capability.SAMSUNG_CE_DETERGENT_STATE,
+            Attribute.DETERGENT_TYPE,
+            "sensor.machine_a_laver_detergent_type",
+            "none",
+            False,
+            id="type_none",
+        ),
     ],
 )
-async def test_dispenser_level_support(
+async def test_dispenser_support(
     hass: HomeAssistant,
     devices: AsyncMock,
     mock_config_entry: MockConfigEntry,
+    capability: Capability,
+    attribute: Attribute,
+    entity_id: str,
     value: str | None,
     exists: bool,
 ) -> None:
-    """Test the dispenser level sensor exists only when the washer measures it."""
-    set_attribute_value(
-        devices,
-        Capability.SAMSUNG_CE_AUTO_DISPENSE_DETERGENT,
-        Attribute.REMAINING_AMOUNT,
-        value,
-    )
+    """Test the dispenser sensors exist only when the appliance reports them."""
+    set_attribute_value(devices, capability, attribute, value)
     await setup_integration(hass, mock_config_entry)
 
-    assert (
-        hass.states.get("sensor.machine_a_laver_detergent_level") is not None
-    ) is exists
+    assert (hass.states.get(entity_id) is not None) is exists
