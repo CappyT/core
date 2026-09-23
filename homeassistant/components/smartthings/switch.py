@@ -18,7 +18,11 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from . import FullDevice, SmartThingsConfigEntry
 from .const import INVALID_SWITCH_CATEGORIES, MAIN
-from .entity import SmartThingsEntity
+from .entity import (
+    SmartThingsCycleOptionEntity,
+    SmartThingsEntity,
+    get_cycle_capability,
+)
 from .util import deprecate_entity
 
 CAPABILITIES = (
@@ -48,8 +52,10 @@ class SmartThingsSwitchEntityDescription(SwitchEntityDescription):
     status_attribute: Attribute
     component_translation_key: dict[str, str] | None = None
     on_key: str | bool = "on"
+    off_key: str | bool = "off"
     on_command: Command = Command.ON
     off_command: Command = Command.OFF
+    cycle_option_key: str | None = None
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -57,7 +63,6 @@ class SmartThingsCommandSwitchEntityDescription(SmartThingsSwitchEntityDescripti
     """Describe a SmartThings switch entity."""
 
     command: Command
-    off_key: str | bool = "off"
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -137,6 +142,7 @@ CAPABILITY_TO_SWITCHES: dict[Capability | str, SmartThingsSwitchEntityDescriptio
         translation_key="bubble_soak",
         status_attribute=Attribute.STATUS,
         entity_category=EntityCategory.CONFIG,
+        cycle_option_key="bubbleSoak",
     ),
     Capability.SWITCH: SmartThingsSwitchEntityDescription(
         key=Capability.SWITCH,
@@ -420,7 +426,7 @@ async def async_setup_entry(
     async_add_entities(entities)
 
 
-class SmartThingsSwitch(SmartThingsEntity, SwitchEntity):
+class SmartThingsSwitch(SmartThingsCycleOptionEntity, SwitchEntity):
     """Define a SmartThings switch."""
 
     entity_description: SmartThingsSwitchEntityDescription
@@ -435,10 +441,19 @@ class SmartThingsSwitch(SmartThingsEntity, SwitchEntity):
         extra_capabilities: set[Capability] | None = None,
     ) -> None:
         """Initialize the switch."""
-        extra_capabilities = set() if extra_capabilities is None else extra_capabilities
-        super().__init__(
-            client, device, {capability} | extra_capabilities, component=component
+        capabilities = {capability} | (extra_capabilities or set())
+        cycle_capability = (
+            get_cycle_capability(device, entity_description.cycle_option_key, component)
+            if entity_description.cycle_option_key is not None
+            else None
         )
+        if cycle_capability is not None:
+            capabilities.add(cycle_capability)
+        super().__init__(client, device, capabilities, component=component)
+        self._cycle_capability = cycle_capability
+        self._cycle_option_key = entity_description.cycle_option_key
+        self._cycle_option_capability = capability
+        self._cycle_option_status_attribute = entity_description.status_attribute
         self.entity_description = entity_description
         self.switch_capability = capability
         self._attr_unique_id = (
@@ -457,6 +472,7 @@ class SmartThingsSwitch(SmartThingsEntity, SwitchEntity):
     @override
     async def async_turn_off(self, **kwargs: Any) -> None:
         """Turn the switch off."""
+        self.validate_cycle_option(self.entity_description.off_key)
         await self.execute_device_command(
             self.switch_capability,
             self.entity_description.off_command,
@@ -465,14 +481,17 @@ class SmartThingsSwitch(SmartThingsEntity, SwitchEntity):
     @override
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Turn the switch on."""
+        self.validate_cycle_option(self.entity_description.on_key)
         await self.execute_device_command(
             self.switch_capability,
             self.entity_description.on_command,
         )
 
     def _current_state(self) -> Any:
-        return self.get_attribute_value(
-            self.switch_capability, self.entity_description.status_attribute
+        return self.resolve_cycle_option_value(
+            self.get_attribute_value(
+                self.switch_capability, self.entity_description.status_attribute
+            )
         )
 
     @property
@@ -490,6 +509,7 @@ class SmartThingsCommandSwitch(SmartThingsSwitch):
     @override
     async def async_turn_off(self, **kwargs: Any) -> None:
         """Turn the switch off."""
+        self.validate_cycle_option(self.entity_description.off_key)
         await self.execute_device_command(
             self.switch_capability,
             self.entity_description.command,
@@ -499,6 +519,7 @@ class SmartThingsCommandSwitch(SmartThingsSwitch):
     @override
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Turn the switch on."""
+        self.validate_cycle_option(self.entity_description.on_key)
         await self.execute_device_command(
             self.switch_capability,
             self.entity_description.command,

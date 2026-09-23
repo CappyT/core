@@ -13,7 +13,11 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from . import FullDevice, SmartThingsConfigEntry
 from .const import MAIN
-from .entity import SmartThingsEntity
+from .entity import (
+    SmartThingsCycleOptionEntity,
+    SmartThingsEntity,
+    get_cycle_capability,
+)
 
 LAMP_TO_HA = {
     "extraHigh": "extra_high",
@@ -164,6 +168,7 @@ class SmartThingsSelectDescription(SelectEntityDescription):
     extra_components: list[str] | None = None
     capability_ignore_list: list[Capability] | None = None
     value_is_integer: bool = False
+    cycle_option_key: str | None = None
 
 
 CAPABILITIES_TO_SELECT: dict[Capability | str, SmartThingsSelectDescription] = {
@@ -252,6 +257,7 @@ CAPABILITIES_TO_SELECT: dict[Capability | str, SmartThingsSelectDescription] = {
         command=Command.SET_WASHER_SPIN_LEVEL,
         options_map=WASHER_SPIN_LEVEL_TO_HA,
         entity_category=EntityCategory.CONFIG,
+        cycle_option_key="spinLevel",
     ),
     Capability.CUSTOM_WASHER_SOIL_LEVEL: SmartThingsSelectDescription(
         key=Capability.CUSTOM_WASHER_SOIL_LEVEL,
@@ -261,6 +267,7 @@ CAPABILITIES_TO_SELECT: dict[Capability | str, SmartThingsSelectDescription] = {
         command=Command.SET_WASHER_SOIL_LEVEL,
         options_map=WASHER_SOIL_LEVEL_TO_HA,
         entity_category=EntityCategory.CONFIG,
+        cycle_option_key="soilLevel",
     ),
     Capability.CUSTOM_WASHER_WATER_TEMPERATURE: SmartThingsSelectDescription(
         key=Capability.CUSTOM_WASHER_WATER_TEMPERATURE,
@@ -271,6 +278,7 @@ CAPABILITIES_TO_SELECT: dict[Capability | str, SmartThingsSelectDescription] = {
         command=Command.SET_WASHER_WATER_TEMPERATURE,
         options_map=WASHER_WATER_TEMPERATURE_TO_HA,
         entity_category=EntityCategory.CONFIG,
+        cycle_option_key="waterTemperature",
     ),
     Capability.SAMSUNG_CE_ROBOT_CLEANER_WATER_SPRAY_LEVEL: SmartThingsSelectDescription(
         key=Capability.SAMSUNG_CE_ROBOT_CLEANER_WATER_SPRAY_LEVEL,
@@ -395,7 +403,7 @@ async def async_setup_entry(
     async_add_entities(entities)
 
 
-class SmartThingsSelectEntity(SmartThingsEntity, SelectEntity):
+class SmartThingsSelectEntity(SmartThingsCycleOptionEntity, SelectEntity):
     """Define a SmartThings select."""
 
     entity_description: SmartThingsSelectDescription
@@ -416,7 +424,18 @@ class SmartThingsSelectEntity(SmartThingsEntity, SelectEntity):
             capabilities.add(Capability.DISHWASHER_OPERATING_STATE)
         if extra_capabilities is not None:
             capabilities.update(extra_capabilities)
+        cycle_capability = (
+            get_cycle_capability(device, entity_description.cycle_option_key, component)
+            if entity_description.cycle_option_key is not None
+            else None
+        )
+        if cycle_capability is not None:
+            capabilities.add(cycle_capability)
         super().__init__(client, device, capabilities, component=component)
+        self._cycle_capability = cycle_capability
+        self._cycle_option_key = entity_description.cycle_option_key
+        self._cycle_option_capability = entity_description.key
+        self._cycle_option_status_attribute = entity_description.status_attribute
         self.entity_description = entity_description
         self._attr_unique_id = (
             f"{device.device.device_id}_{component}"
@@ -435,11 +454,8 @@ class SmartThingsSelectEntity(SmartThingsEntity, SelectEntity):
             or []
         )
 
-    @property
-    @override
-    def options(self) -> list[str]:
-        """Return the list of options."""
-        options = self._device_options()
+    def _to_ha_options(self, options: list[str]) -> list[str]:
+        """Convert device values into Home Assistant values."""
         if self.entity_description.options_map:
             options = [
                 self.entity_description.options_map.get(option, option)
@@ -451,10 +467,22 @@ class SmartThingsSelectEntity(SmartThingsEntity, SelectEntity):
 
     @property
     @override
+    def options(self) -> list[str]:
+        """Return the list of options."""
+        options = self._to_ha_options(self._device_options())
+        if (cycle_options := self.cycle_options) is not None:
+            allowed_options = self._to_ha_options(cycle_options)
+            options = [option for option in options if option in allowed_options]
+        return options
+
+    @property
+    @override
     def current_option(self) -> str | None:
         """Return the current option."""
-        option = self.get_attribute_value(
-            self.entity_description.key, self.entity_description.status_attribute
+        option = self.resolve_cycle_option_value(
+            self.get_attribute_value(
+                self.entity_description.key, self.entity_description.status_attribute
+            )
         )
         if self.entity_description.options_map:
             option = self.entity_description.options_map.get(option, option)

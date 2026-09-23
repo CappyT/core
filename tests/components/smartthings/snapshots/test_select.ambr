@@ -1670,7 +1670,6 @@
     'area_id': None,
     'capabilities': dict({
       <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
-        'none',
         'extra_light',
         'light',
         'normal',
@@ -1713,7 +1712,6 @@
     'attributes': ReadOnlyDict({
       <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Washer Soil level',
       <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
-        'none',
         'extra_light',
         'light',
         'normal',
@@ -1739,7 +1737,6 @@
       <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
         'rinse_hold',
         'no_spin',
-        'low',
         'medium',
         'high',
         'extra_high',
@@ -1782,7 +1779,6 @@
       <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
         'rinse_hold',
         'no_spin',
-        'low',
         'medium',
         'high',
         'extra_high',
@@ -1804,7 +1800,6 @@
     'area_id': None,
     'capabilities': dict({
       <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
-        'none',
         'tap_cold',
         'cold',
         'warm',
@@ -1847,7 +1842,6 @@
     'attributes': ReadOnlyDict({
       <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Washer Water temperature',
       <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
-        'none',
         'tap_cold',
         'cold',
         'warm',
@@ -2001,13 +1995,10 @@
     'area_id': None,
     'capabilities': dict({
       <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
-        'none',
         'cold',
         '20',
         '30',
         '40',
-        '60',
-        '90',
       ]),
     }),
     'config_entry_id': <ANY>,
@@ -2045,13 +2036,10 @@
     'attributes': ReadOnlyDict({
       <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Washing Machine Water temperature',
       <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
-        'none',
         'cold',
         '20',
         '30',
         '40',
-        '60',
-        '90',
       ]),
     }),
     'context': <ANY>,
@@ -2327,12 +2315,6 @@
     'capabilities': dict({
       <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
         'none',
-        'cold',
-        '20',
-        '30',
-        '40',
-        '60',
-        '90',
       ]),
     }),
     'config_entry_id': <ANY>,
@@ -2371,12 +2353,6 @@
       <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Machine à Laver Water temperature',
       <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
         'none',
-        'cold',
-        '20',
-        '30',
-        '40',
-        '60',
-        '90',
       ]),
     }),
     'context': <ANY>,
@@ -2384,7 +2360,7 @@
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,
-    'state': '40',
+    'state': 'none',
   })
 # ---
 # name: test_all_entities[da_wm_wm_100001][select.washer_1-entry]

@@ -1,5 +1,7 @@
 """Utility functions for SmartThings integration."""
 
+from typing import Any
+
 from homeassistant.components.automation import automations_with_entity
 from homeassistant.components.script import scripts_with_entity
 from homeassistant.core import HomeAssistant
@@ -11,6 +13,18 @@ from homeassistant.helpers.issue_registry import (
 )
 
 from .const import DOMAIN
+
+
+def normalize_cycle_value(value: Any) -> str | None:
+    """Normalize washer/dryer cycle names."""
+    if not value:
+        return None
+    value_str = str(value)
+    return (
+        value_str.rsplit("_", maxsplit=1)[-1].lower()
+        if "_" in value_str
+        else value_str.lower()
+    )
 
 
 def deprecate_entity(

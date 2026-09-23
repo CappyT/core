@@ -11,7 +11,11 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from . import FullDevice, SmartThingsConfigEntry
 from .const import MAIN, UNIT_MAP
-from .entity import SmartThingsEntity
+from .entity import (
+    SmartThingsCycleOptionEntity,
+    SmartThingsEntity,
+    get_cycle_capability,
+)
 
 
 async def async_setup_entry(
@@ -51,17 +55,26 @@ async def async_setup_entry(
     async_add_entities(entities)
 
 
-class SmartThingsWasherRinseCyclesNumberEntity(SmartThingsEntity, NumberEntity):
+class SmartThingsWasherRinseCyclesNumberEntity(
+    SmartThingsCycleOptionEntity, NumberEntity
+):
     """Define a SmartThings number."""
 
     _attr_translation_key = "washer_rinse_cycles"
     _attr_native_step = 1.0
     _attr_mode = NumberMode.BOX
     _attr_entity_category = EntityCategory.CONFIG
+    _cycle_option_key = "rinseCycle"
+    _cycle_option_capability = Capability.CUSTOM_WASHER_RINSE_CYCLES
+    _cycle_option_status_attribute = Attribute.WASHER_RINSE_CYCLES
 
     def __init__(self, client: SmartThings, device: FullDevice) -> None:
         """Initialize the instance."""
-        super().__init__(client, device, {Capability.CUSTOM_WASHER_RINSE_CYCLES})
+        capabilities = {Capability.CUSTOM_WASHER_RINSE_CYCLES}
+        if (cycle_capability := get_cycle_capability(device, "rinseCycle")) is not None:
+            capabilities.add(cycle_capability)
+        super().__init__(client, device, capabilities)
+        self._cycle_capability = cycle_capability
         self._attr_unique_id = (
             f"{device.device.device_id}_{MAIN}"
             f"_{Capability.CUSTOM_WASHER_RINSE_CYCLES}"
@@ -72,33 +85,43 @@ class SmartThingsWasherRinseCyclesNumberEntity(SmartThingsEntity, NumberEntity):
     @property
     def options(self) -> list[int]:
         """Return the list of options."""
-        values = self.get_attribute_value(
-            Capability.CUSTOM_WASHER_RINSE_CYCLES,
-            Attribute.SUPPORTED_WASHER_RINSE_CYCLES,
+        values: list[str] = (
+            self.get_attribute_value(
+                Capability.CUSTOM_WASHER_RINSE_CYCLES,
+                Attribute.SUPPORTED_WASHER_RINSE_CYCLES,
+            )
+            or []
         )
-        return [int(value) for value in values] if values else []
+        if (cycle_options := self.cycle_options) is not None:
+            values = [value for value in values if value in cycle_options]
+        return [int(value) for value in values]
 
     @property
     @override
     def native_value(self) -> float | None:
         """Return the current value."""
-        return int(
-            self.get_attribute_value(
-                Capability.CUSTOM_WASHER_RINSE_CYCLES, Attribute.WASHER_RINSE_CYCLES
+        if (
+            value := self.resolve_cycle_option_value(
+                self.get_attribute_value(
+                    Capability.CUSTOM_WASHER_RINSE_CYCLES, Attribute.WASHER_RINSE_CYCLES
+                )
             )
-        )
+        ) is None:
+            return None
+        return int(value)
 
     @property
     @override
     def native_min_value(self) -> float:
         """Return the minimum value."""
-        return min(self.options)
+        # A cycle that locks rinse cycles without a default leaves no options.
+        return min(self.options, default=0)
 
     @property
     @override
     def native_max_value(self) -> float:
         """Return the maximum value."""
-        return max(self.options)
+        return max(self.options, default=0)
 
     @override
     async def async_set_native_value(self, value: float) -> None:

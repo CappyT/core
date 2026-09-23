@@ -29,6 +29,8 @@ from . import (
 
 from tests.common import MockConfigEntry
 
+WASHER_ID = "b854ca5f-dc54-140d-6349-758b4d973c41"
+
 
 @pytest.mark.usefixtures("entity_registry_enabled_by_default")
 async def test_all_entities(
@@ -371,3 +373,92 @@ async def test_select_dishwasher_washing_option(
             ),
         ]
     )
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+async def test_select_options_follow_cycle(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+) -> None:
+    """Test options and value follow the selected cycle."""
+    await setup_integration(hass, mock_config_entry)
+
+    await trigger_update(
+        hass,
+        devices,
+        WASHER_ID,
+        Capability.SAMSUNG_CE_WASHER_CYCLE,
+        Attribute.WASHER_CYCLE,
+        "Table_02_Course_1E",
+    )
+
+    # The device keeps reporting the previous values until it republishes them
+    state = hass.states.get("select.machine_a_laver_water_temperature")
+    assert state.state == "40"
+    assert state.attributes[ATTR_OPTIONS] == ["cold", "20", "30", "40"]
+    state = hass.states.get("select.machine_a_laver_spin_level")
+    assert state.state == "1200"
+    assert state.attributes[ATTR_OPTIONS] == [
+        "rinse_hold",
+        "no_spin",
+        "400",
+        "800",
+        "1000",
+        "1200",
+    ]
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+async def test_select_option_locked_by_cycle(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+) -> None:
+    """Test an option the selected cycle locks to its default."""
+    await setup_integration(hass, mock_config_entry)
+
+    state = hass.states.get("select.machine_a_laver_water_temperature")
+    assert state.state == "none"
+    assert state.attributes[ATTR_OPTIONS] == ["none"]
+
+    with pytest.raises(ServiceValidationError):
+        await hass.services.async_call(
+            SELECT_DOMAIN,
+            SERVICE_SELECT_OPTION,
+            {
+                ATTR_ENTITY_ID: "select.machine_a_laver_water_temperature",
+                ATTR_OPTION: "40",
+            },
+            blocking=True,
+        )
+    devices.execute_device_command.assert_not_called()
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+async def test_select_option_kept_when_cycle_is_republished(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+) -> None:
+    """Test a republished cycle does not replace the value with its default."""
+    await setup_integration(hass, mock_config_entry)
+
+    await trigger_update(
+        hass,
+        devices,
+        WASHER_ID,
+        Capability.CUSTOM_WASHER_SPIN_LEVEL,
+        Attribute.WASHER_SPIN_LEVEL,
+        "800",
+    )
+    await trigger_update(
+        hass,
+        devices,
+        WASHER_ID,
+        Capability.SAMSUNG_CE_WASHER_CYCLE,
+        Attribute.WASHER_CYCLE,
+        "Table_02_Course_1C",
+    )
+
+    assert hass.states.get("select.machine_a_laver_spin_level").state == "800"

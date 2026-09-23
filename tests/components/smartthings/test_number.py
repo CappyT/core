@@ -13,11 +13,17 @@ from homeassistant.components.number import (
     SERVICE_SET_VALUE,
 )
 from homeassistant.components.smartthings import MAIN
-from homeassistant.const import ATTR_ENTITY_ID, STATE_UNAVAILABLE, Platform
+from homeassistant.const import (
+    ATTR_ENTITY_ID,
+    STATE_UNAVAILABLE,
+    STATE_UNKNOWN,
+    Platform,
+)
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import entity_registry as er
 
 from . import (
+    set_attribute_value,
     setup_integration,
     snapshot_smartthings_entities,
     trigger_health_update,
@@ -124,3 +130,27 @@ async def test_availability_at_start(
     assert (
         hass.states.get("number.theater_washer_rinse_cycles").state == STATE_UNAVAILABLE
     )
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+async def test_rinse_cycles_without_value(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+) -> None:
+    """Test the rinse cycles number without a value or a known cycle default."""
+    set_attribute_value(
+        devices,
+        Capability.SAMSUNG_CE_WASHER_CYCLE,
+        Attribute.WASHER_CYCLE,
+        "Table_02_Course_99",
+    )
+    set_attribute_value(
+        devices,
+        Capability.CUSTOM_WASHER_RINSE_CYCLES,
+        Attribute.WASHER_RINSE_CYCLES,
+        None,
+    )
+    await setup_integration(hass, mock_config_entry)
+
+    assert hass.states.get("number.machine_a_laver_rinse_cycles").state == STATE_UNKNOWN

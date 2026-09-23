@@ -641,3 +641,67 @@ async def test_turn_on_with_wrong_dishwasher_cycle(
             blocking=True,
         )
     devices.execute_device_command.assert_not_called()
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+async def test_turn_on_option_locked_by_cycle(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+) -> None:
+    """Test turning on an option the selected cycle locks off."""
+    await setup_integration(hass, mock_config_entry)
+
+    assert hass.states.get("switch.machine_a_laver_bubble_soak").state == STATE_OFF
+
+    with pytest.raises(
+        ServiceValidationError, match="Option is not supported by selected cycle"
+    ):
+        await hass.services.async_call(
+            SWITCH_DOMAIN,
+            SERVICE_TURN_ON,
+            {ATTR_ENTITY_ID: "switch.machine_a_laver_bubble_soak"},
+            blocking=True,
+        )
+    devices.execute_device_command.assert_not_called()
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+async def test_turn_off_option_locked_by_cycle(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+) -> None:
+    """Test turning off an option the selected cycle locks on."""
+    cycles = devices.get_device_status.return_value[MAIN][
+        Capability.SAMSUNG_CE_WASHER_CYCLE
+    ][Attribute.SUPPORTED_CYCLES].value
+    set_attribute_value(
+        devices,
+        Capability.SAMSUNG_CE_WASHER_CYCLE,
+        Attribute.SUPPORTED_CYCLES,
+        [
+            {
+                **cycle,
+                "supportedOptions": {
+                    **cycle["supportedOptions"],
+                    "bubbleSoak": {"default": "on", "options": []},
+                },
+            }
+            for cycle in cycles
+        ],
+    )
+    await setup_integration(hass, mock_config_entry)
+
+    assert hass.states.get("switch.machine_a_laver_bubble_soak").state == STATE_ON
+
+    with pytest.raises(
+        ServiceValidationError, match="Option is not supported by selected cycle"
+    ):
+        await hass.services.async_call(
+            SWITCH_DOMAIN,
+            SERVICE_TURN_OFF,
+            {ATTR_ENTITY_ID: "switch.machine_a_laver_bubble_soak"},
+            blocking=True,
+        )
+    devices.execute_device_command.assert_not_called()
