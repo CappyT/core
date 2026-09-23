@@ -33,6 +33,9 @@ from . import (
 
 from tests.common import MockConfigEntry
 
+WASHER_ID = "b854ca5f-dc54-140d-6349-758b4d973c41"
+DRYER_ID = "3d39866c-7716-5259-44f0-fd7025efd85f"
+
 
 async def test_all_entities(
     hass: HomeAssistant,
@@ -151,26 +154,58 @@ async def test_delay_end_without_value(
     assert hass.states.get("number.machine_a_laver_delay_end").state == STATE_UNKNOWN
 
 
-@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
-@pytest.mark.parametrize("value", [0, 165, 300])
+@pytest.mark.parametrize(
+    ("device_fixture", "entity_id", "device_id", "capability", "value"),
+    [
+        *(
+            pytest.param(
+                "da_wm_wm_01011",
+                "number.machine_a_laver_delay_end",
+                WASHER_ID,
+                Capability.SAMSUNG_CE_WASHER_DELAY_END,
+                value,
+                id=f"washer_{value}",
+            )
+            for value in (0, 165, 300)
+        ),
+        # Dryers report no minimum reservable time
+        pytest.param(
+            "da_wm_wd_01011",
+            "number.trockner_delay_end",
+            DRYER_ID,
+            Capability.SAMSUNG_CE_DRYER_DELAY_END,
+            60,
+            id="dryer_60",
+        ),
+    ],
+)
 async def test_set_delay_end(
     hass: HomeAssistant,
     devices: AsyncMock,
     mock_config_entry: MockConfigEntry,
+    entity_id: str,
+    device_id: str,
+    capability: Capability,
     value: int,
 ) -> None:
     """Test setting a delay of 0 or at least the minimum reservable time."""
+    set_attribute_value(
+        devices,
+        Capability.REMOTE_CONTROL_STATUS,
+        Attribute.REMOTE_CONTROL_ENABLED,
+        "true",
+    )
     await setup_integration(hass, mock_config_entry)
 
     await hass.services.async_call(
         NUMBER_DOMAIN,
         SERVICE_SET_VALUE,
-        {ATTR_ENTITY_ID: "number.machine_a_laver_delay_end", ATTR_VALUE: value},
+        {ATTR_ENTITY_ID: entity_id, ATTR_VALUE: value},
         blocking=True,
     )
     devices.execute_device_command.assert_called_once_with(
-        "b854ca5f-dc54-140d-6349-758b4d973c41",
-        Capability.SAMSUNG_CE_WASHER_DELAY_END,
+        device_id,
+        capability,
         Command.SET_DELAY_TIME,
         MAIN,
         argument=value,
@@ -187,7 +222,7 @@ async def test_set_delay_end(
         pytest.param(
             "false",
             300,
-            "Can only be updated when remote control is enabled",
+            "Can only be changed when remote control is enabled",
             id="no_remote_control",
         ),
     ],

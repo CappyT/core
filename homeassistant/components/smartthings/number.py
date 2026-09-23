@@ -1,6 +1,6 @@
 """Support for number entities through the SmartThings cloud API."""
 
-from typing import cast, override
+from typing import override
 
 from pysmartthings import Attribute, Capability, Command, SmartThings
 
@@ -11,7 +11,7 @@ from homeassistant.exceptions import ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from . import FullDevice, SmartThingsConfigEntry
-from .const import MAIN, UNIT_MAP
+from .const import DOMAIN, MAIN, UNIT_MAP
 from .entity import SmartThingsEntity
 
 
@@ -310,15 +310,16 @@ class SmartThingsDelayEndNumberEntity(SmartThingsEntity, NumberEntity):
             == "false"
         ):
             raise ServiceValidationError(
-                "Can only be updated when remote control is enabled"
+                translation_domain=DOMAIN, translation_key="remote_control_status"
             )
         minimum = 0
-        if (
-            status := self._internal_state[self.capability].get(
-                Attribute.MINIMUM_RESERVABLE_TIME
+        if Attribute.MINIMUM_RESERVABLE_TIME in self._internal_state[self.capability]:
+            minimum = int(
+                self.get_attribute_value(
+                    self.capability, Attribute.MINIMUM_RESERVABLE_TIME
+                )
+                or 0
             )
-        ) is not None:
-            minimum = int(cast(int | str | None, status.value) or 0)
         if 0 < value < minimum:
             raise ServiceValidationError(
                 f"The delay must be 0 or at least {minimum} minutes"
