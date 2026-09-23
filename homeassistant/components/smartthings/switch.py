@@ -1,9 +1,10 @@
 """Support for switches through the SmartThings cloud API."""
 
+from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any, cast, override
 
-from pysmartthings import Attribute, Capability, Command, SmartThings
+from pysmartthings import Attribute, Capability, Command, SmartThings, Status
 
 from homeassistant.components.switch import (
     DOMAIN as SWITCH_DOMAIN,
@@ -58,6 +59,7 @@ class SmartThingsCommandSwitchEntityDescription(SmartThingsSwitchEntityDescripti
 
     command: Command
     off_key: str | bool = "off"
+    exists_fn: Callable[[Status], bool] | None = None
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -108,6 +110,8 @@ CAPABILITY_TO_COMMAND_SWITCHES: dict[
             status_attribute=Attribute.DRYER_AUTO_CYCLE_LINK,
             command=Command.SET_DRYER_AUTO_CYCLE_LINK,
             entity_category=EntityCategory.CONFIG,
+            # Some dryers expose the capability without ever reporting a value
+            exists_fn=lambda status: status.value is not None,
         )
     ),
     Capability.SAMSUNG_CE_STEAM_CLOSET_AUTO_CYCLE_LINK: (
@@ -332,6 +336,12 @@ async def async_setup_entry(
         for device in entry_data.devices.values()
         for capability, description in CAPABILITY_TO_COMMAND_SWITCHES.items()
         if capability in device.status[MAIN]
+        and (
+            description.exists_fn is None
+            or description.exists_fn(
+                device.status[MAIN][capability][description.status_attribute]
+            )
+        )
     ]
     entities.extend(
         SmartThingsSwitch(
