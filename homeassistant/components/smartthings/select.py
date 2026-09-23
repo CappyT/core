@@ -13,11 +13,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from . import FullDevice, SmartThingsConfigEntry
 from .const import MAIN
-from .entity import (
-    SmartThingsCycleOptionEntity,
-    SmartThingsEntity,
-    get_cycle_capability,
-)
+from .entity import SmartThingsCycleOptionEntity, SmartThingsEntity
 
 LAMP_TO_HA = {
     "extraHigh": "extra_high",
@@ -442,18 +438,15 @@ class SmartThingsSelectEntity(SmartThingsCycleOptionEntity, SelectEntity):
             capabilities.add(Capability.DISHWASHER_OPERATING_STATE)
         if extra_capabilities is not None:
             capabilities.update(extra_capabilities)
-        cycle_capability = (
-            get_cycle_capability(device, entity_description.cycle_option_key, component)
-            if entity_description.cycle_option_key is not None
-            else None
+        super().__init__(
+            client,
+            device,
+            capabilities,
+            component=component,
+            cycle_option_key=entity_description.cycle_option_key,
+            option_capability=entity_description.key,
+            option_status_attribute=entity_description.status_attribute,
         )
-        if cycle_capability is not None:
-            capabilities.add(cycle_capability)
-        super().__init__(client, device, capabilities, component=component)
-        self._cycle_capability = cycle_capability
-        self._cycle_option_key = entity_description.cycle_option_key
-        self._cycle_option_capability = entity_description.key
-        self._cycle_option_status_attribute = entity_description.status_attribute
         self.entity_description = entity_description
         self._attr_unique_id = (
             f"{device.device.device_id}_{component}"

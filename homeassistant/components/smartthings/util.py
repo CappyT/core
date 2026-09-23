@@ -19,12 +19,7 @@ def normalize_cycle_value(value: Any) -> str | None:
     """Normalize washer/dryer cycle names."""
     if not value:
         return None
-    value_str = str(value)
-    return (
-        value_str.rsplit("_", maxsplit=1)[-1].lower()
-        if "_" in value_str
-        else value_str.lower()
-    )
+    return str(value).rsplit("_", maxsplit=1)[-1].lower()
 
 
 def deprecate_entity(

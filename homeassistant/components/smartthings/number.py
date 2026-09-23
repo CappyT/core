@@ -11,11 +11,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from . import FullDevice, SmartThingsConfigEntry
 from .const import MAIN, UNIT_MAP
-from .entity import (
-    SmartThingsCycleOptionEntity,
-    SmartThingsEntity,
-    get_cycle_capability,
-)
+from .entity import SmartThingsCycleOptionEntity, SmartThingsEntity
 
 
 async def async_setup_entry(
@@ -64,17 +60,17 @@ class SmartThingsWasherRinseCyclesNumberEntity(
     _attr_native_step = 1.0
     _attr_mode = NumberMode.BOX
     _attr_entity_category = EntityCategory.CONFIG
-    _cycle_option_key = "rinseCycle"
-    _cycle_option_capability = Capability.CUSTOM_WASHER_RINSE_CYCLES
-    _cycle_option_status_attribute = Attribute.WASHER_RINSE_CYCLES
 
     def __init__(self, client: SmartThings, device: FullDevice) -> None:
         """Initialize the instance."""
-        capabilities = {Capability.CUSTOM_WASHER_RINSE_CYCLES}
-        if (cycle_capability := get_cycle_capability(device, "rinseCycle")) is not None:
-            capabilities.add(cycle_capability)
-        super().__init__(client, device, capabilities)
-        self._cycle_capability = cycle_capability
+        super().__init__(
+            client,
+            device,
+            {Capability.CUSTOM_WASHER_RINSE_CYCLES},
+            cycle_option_key="rinseCycle",
+            option_capability=Capability.CUSTOM_WASHER_RINSE_CYCLES,
+            option_status_attribute=Attribute.WASHER_RINSE_CYCLES,
+        )
         self._attr_unique_id = (
             f"{device.device.device_id}_{MAIN}"
             f"_{Capability.CUSTOM_WASHER_RINSE_CYCLES}"
@@ -126,12 +122,14 @@ class SmartThingsWasherRinseCyclesNumberEntity(
     @override
     async def async_set_native_value(self, value: float) -> None:
         """Set the value."""
+        option = str(int(value))
+        self.validate_cycle_option(option)
         await self.execute_device_command(
             Capability.CUSTOM_WASHER_RINSE_CYCLES,
             Command.SET_WASHER_RINSE_CYCLES,
-            str(int(value)),
+            option,
         )
-        self.confirm_cycle_option(str(int(value)))
+        self.confirm_cycle_option(option)
 
 
 class SmartThingsHoodNumberEntity(SmartThingsEntity, NumberEntity):
