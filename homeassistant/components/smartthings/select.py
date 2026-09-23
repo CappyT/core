@@ -3,7 +3,7 @@
 from dataclasses import dataclass
 from typing import cast, override
 
-from pysmartthings import Attribute, Capability, Command, SmartThings
+from pysmartthings import Attribute, Capability, Command, ComponentStatus, SmartThings
 
 from homeassistant.components.select import SelectEntity, SelectEntityDescription
 from homeassistant.const import EntityCategory
@@ -18,6 +18,7 @@ from .entity import (
     SmartThingsEntity,
     get_cycle_capability,
 )
+from .util import normalize_cycle_value
 
 LAMP_TO_HA = {
     "extraHigh": "extra_high",
@@ -352,6 +353,88 @@ DISHWASHER_WASHING_OPTIONS_TO_SELECT: dict[
     ),
 }
 
+# Cycle codes only have a meaning within the reference table of the appliance.
+# Only codes confirmed on real appliances are listed, others are not exposed.
+CYCLE_TO_HA: dict[Capability, dict[str, dict[str, str]]] = {
+    Capability.SAMSUNG_CE_WASHER_CYCLE: {
+        "Table_02": {
+            "1B": "cotton",
+            "1C": "eco_40_60",
+            "1D": "super_speed",
+            "1E": "quick_wash",
+            "1F": "intense_cold",
+            "20": "hygiene_steam",
+            "21": "colors",
+            "22": "wool",
+            "23": "outdoor",
+            "24": "bedding",
+            "25": "synthetics",
+            "26": "delicates",
+            "27": "rinse_spin",
+            "28": "drain_spin",
+            "29": "drum_clean_plus",
+            "2A": "jeans",
+            "2D": "silent_wash",
+            "2E": "baby_care",
+            "2F": "sportswear",
+            "30": "cloudy_day",
+            "32": "shirts",
+            "33": "towels",
+            "34": "mixed_load",
+            "3A": "drum_clean",
+        },
+    },
+    Capability.SAMSUNG_CE_DRYER_CYCLE: {
+        "Table_03": {
+            "16": "cotton",
+            "17": "super_speed",
+            "18": "synthetics",
+            "19": "delicates",
+            "1A": "wool",
+            "1B": "bedding",
+            "1C": "shirts",
+            "1D": "towels",
+            "1E": "outdoor",
+            "1F": "mixed_load",
+            "20": "iron_dry",
+            "21": "hygiene_care",
+            "23": "quick_dry",
+            "24": "cool_air",
+            "25": "warm_air",
+            "27": "time_dry",
+        },
+    },
+}
+
+
+def get_cycle_names(status: ComponentStatus, capability: Capability) -> dict[str, str]:
+    """Return the known cycle names of the reference table of an appliance."""
+    if (
+        table_status := status[capability].get(Attribute.REFERENCE_TABLE)
+    ) is None or not isinstance(table := table_status.value, dict):
+        return {}
+    return CYCLE_TO_HA[capability].get(table["id"], {})
+
+
+CYCLE_CAPABILITIES_TO_SELECT: dict[Capability, SmartThingsSelectDescription] = {
+    Capability.SAMSUNG_CE_WASHER_CYCLE: SmartThingsSelectDescription(
+        key=Capability.SAMSUNG_CE_WASHER_CYCLE,
+        translation_key="washer_cycle",
+        requires_remote_control_status=True,
+        options_attribute=Attribute.SUPPORTED_CYCLES,
+        status_attribute=Attribute.WASHER_CYCLE,
+        command=Command.SET_WASHER_CYCLE,
+    ),
+    Capability.SAMSUNG_CE_DRYER_CYCLE: SmartThingsSelectDescription(
+        key=Capability.SAMSUNG_CE_DRYER_CYCLE,
+        translation_key="dryer_cycle",
+        requires_remote_control_status=True,
+        options_attribute=Attribute.SUPPORTED_CYCLES,
+        status_attribute=Attribute.DRYER_CYCLE,
+        command=Command.SET_DRYER_CYCLE,
+    ),
+}
+
 
 async def async_setup_entry(
     hass: HomeAssistant,
@@ -381,6 +464,13 @@ async def async_setup_entry(
                 for capability in description.capability_ignore_list
             )
         )
+    )
+    entities.extend(
+        SmartThingsCycleSelectEntity(entry_data.client, device, description, MAIN)
+        for capability, description in CYCLE_CAPABILITIES_TO_SELECT.items()
+        for device in entry_data.devices.values()
+        if capability in device.status[MAIN]
+        and get_cycle_names(device.status[MAIN], capability)
     )
     entities.extend(
         SmartThingsDishwasherWashingOptionSelectEntity(
@@ -535,6 +625,61 @@ class SmartThingsSelectEntity(SmartThingsCycleOptionEntity, SelectEntity):
             self.entity_description.key,
             self.entity_description.command,
             new_option,
+        )
+
+
+class SmartThingsCycleSelectEntity(SmartThingsSelectEntity):
+    """Define a SmartThings select for a washer/dryer cycle."""
+
+    @property
+    def _cycle_codes(self) -> dict[str, str]:
+        """Return the supported cycle codes, keyed by their name."""
+        names = get_cycle_names(self._internal_state, self.entity_description.key)
+        cycles = (
+            self.get_attribute_value(
+                self.entity_description.key, self.entity_description.options_attribute
+            )
+            or []
+        )
+        return {
+            names[code]: code
+            for cycle in cycles
+            if (code := cycle["cycle"].upper()) in names
+        }
+
+    @property
+    @override
+    def options(self) -> list[str]:
+        """Return the list of options."""
+        return list(self._cycle_codes)
+
+    @property
+    @override
+    def current_option(self) -> str | None:
+        """Return the current option."""
+        if (
+            code := normalize_cycle_value(
+                self.get_attribute_value(
+                    self.entity_description.key,
+                    self.entity_description.status_attribute,
+                )
+            )
+        ) is None:
+            return None
+        return get_cycle_names(self._internal_state, self.entity_description.key).get(
+            code.upper()
+        )
+
+    @override
+    async def async_select_option(self, option: str) -> None:
+        """Select an option."""
+        self._validate_before_select()
+        # The device only accepts the short uppercase cycle code, the full
+        # `<table>_Course_<code>` form reported by the status attribute is ignored.
+        await self.execute_device_command(
+            self.entity_description.key,
+            self.entity_description.command,
+            self._cycle_codes[option],
         )
 
 

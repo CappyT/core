@@ -462,3 +462,56 @@ async def test_select_option_kept_when_cycle_is_republished(
     )
 
     assert hass.states.get("select.machine_a_laver_spin_level").state == "800"
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+async def test_select_cycle(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+) -> None:
+    """Test the cycle select sends the cycle code of the named cycle."""
+    await setup_integration(hass, mock_config_entry)
+
+    assert hass.states.get("select.machine_a_laver_cycle").state == "eco_40_60"
+
+    await hass.services.async_call(
+        SELECT_DOMAIN,
+        SERVICE_SELECT_OPTION,
+        {ATTR_ENTITY_ID: "select.machine_a_laver_cycle", ATTR_OPTION: "cotton"},
+        blocking=True,
+    )
+    devices.execute_device_command.assert_called_once_with(
+        WASHER_ID,
+        Capability.SAMSUNG_CE_WASHER_CYCLE,
+        Command.SET_WASHER_CYCLE,
+        MAIN,
+        argument="1B",
+    )
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+@pytest.mark.parametrize(
+    "reference_table",
+    [
+        pytest.param({"id": "Table_00"}, id="unknown_table"),
+        pytest.param(None, id="no_table"),
+    ],
+)
+async def test_no_cycle_select_without_known_table(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+    reference_table: dict[str, str] | None,
+) -> None:
+    """Test cycle codes are not exposed when their table is not known."""
+    set_attribute_value(
+        devices,
+        Capability.SAMSUNG_CE_WASHER_CYCLE,
+        Attribute.REFERENCE_TABLE,
+        reference_table,
+    )
+    await setup_integration(hass, mock_config_entry)
+
+    assert hass.states.get("select.machine_a_laver_cycle") is None
+    assert hass.states.get("select.machine_a_laver_spin_level") is not None

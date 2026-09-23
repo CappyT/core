@@ -301,6 +301,27 @@
           "upper_express": "Upper express"
         }
       },
+      "dryer_cycle": {
+        "name": "Cycle",
+        "state": {
+          "bedding": "[%key:component::smartthings::entity::select::washer_cycle::state::bedding%]",
+          "cool_air": "Cool air",
+          "cotton": "[%key:component::smartthings::entity::select::washer_cycle::state::cotton%]",
+          "delicates": "[%key:component::smartthings::entity::select::washer_cycle::state::delicates%]",
+          "hygiene_care": "Hygiene care",
+          "iron_dry": "Iron dry",
+          "mixed_load": "[%key:component::smartthings::entity::select::washer_cycle::state::mixed_load%]",
+          "outdoor": "[%key:component::smartthings::entity::select::washer_cycle::state::outdoor%]",
+          "quick_dry": "35' quick dry",
+          "shirts": "[%key:component::smartthings::entity::select::washer_cycle::state::shirts%]",
+          "super_speed": "[%key:component::smartthings::entity::select::washer_cycle::state::super_speed%]",
+          "synthetics": "[%key:component::smartthings::entity::select::washer_cycle::state::synthetics%]",
+          "time_dry": "Time dry",
+          "towels": "[%key:component::smartthings::entity::select::washer_cycle::state::towels%]",
+          "warm_air": "Warm air",
+          "wool": "[%key:component::smartthings::entity::select::washer_cycle::state::wool%]"
+        }
+      },
       "dust_filter_alarm": {
         "name": "Dust filter alarm threshold",
         "unit_of_measurement": "hours"
@@ -418,6 +439,35 @@
           "no_spin": "No spin",
           "none": "None",
           "rinse_hold": "Rinse hold"
+        }
+      },
+      "washer_cycle": {
+        "name": "Cycle",
+        "state": {
+          "baby_care": "Baby care",
+          "bedding": "Bedding",
+          "cloudy_day": "Cloudy day",
+          "colors": "Colors",
+          "cotton": "Cotton",
+          "delicates": "Delicates",
+          "drain_spin": "Drain and spin",
+          "drum_clean": "Drum clean",
+          "drum_clean_plus": "Drum clean+",
+          "eco_40_60": "Eco 40-60",
+          "hygiene_steam": "Hygiene steam",
+          "intense_cold": "Intense cold",
+          "jeans": "Jeans",
+          "mixed_load": "Mixed load",
+          "outdoor": "Outdoor",
+          "quick_wash": "15' quick wash",
+          "rinse_spin": "Rinse and spin",
+          "shirts": "Shirts",
+          "silent_wash": "Silent wash",
+          "sportswear": "Sportswear",
+          "super_speed": "Super speed",
+          "synthetics": "Synthetics",
+          "towels": "Towels",
+          "wool": "Wool"
         }
       },
       "water_temperature": {
