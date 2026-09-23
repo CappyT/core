@@ -302,7 +302,7 @@
         }
       },
       "dryer_cycle": {
-        "name": "Cycle",
+        "name": "Dryer cycle",
         "state": {
           "bedding": "[%key:component::smartthings::entity::select::washer_cycle::state::bedding%]",
           "cool_air": "Cool air",
@@ -312,7 +312,7 @@
           "iron_dry": "Iron dry",
           "mixed_load": "[%key:component::smartthings::entity::select::washer_cycle::state::mixed_load%]",
           "outdoor": "[%key:component::smartthings::entity::select::washer_cycle::state::outdoor%]",
-          "quick_dry": "35' quick dry",
+          "quick_dry": "Quick dry",
           "shirts": "[%key:component::smartthings::entity::select::washer_cycle::state::shirts%]",
           "super_speed": "[%key:component::smartthings::entity::select::washer_cycle::state::super_speed%]",
           "synthetics": "[%key:component::smartthings::entity::select::washer_cycle::state::synthetics%]",
@@ -442,7 +442,7 @@
         }
       },
       "washer_cycle": {
-        "name": "Cycle",
+        "name": "Washer cycle",
         "state": {
           "baby_care": "Baby care",
           "bedding": "Bedding",
@@ -459,7 +459,7 @@
           "jeans": "Jeans",
           "mixed_load": "Mixed load",
           "outdoor": "Outdoor",
-          "quick_wash": "15' quick wash",
+          "quick_wash": "Quick wash",
           "rinse_spin": "Rinse and spin",
           "shirts": "Shirts",
           "silent_wash": "Silent wash",

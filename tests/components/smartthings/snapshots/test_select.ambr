@@ -1601,7 +1601,7 @@
     'state': 'stop',
   })
 # ---
-# name: test_all_entities[da_wm_wd_01011][select.trockner_cycle-entry]
+# name: test_all_entities[da_wm_wd_01011][select.trockner_dryer_cycle-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
       None,
@@ -1632,7 +1632,7 @@
     'disabled_by': None,
     'domain': 'select',
     'entity_category': None,
-    'entity_id': 'select.trockner_cycle',
+    'entity_id': 'select.trockner_dryer_cycle',
     'has_entity_name': True,
     'hidden_by': None,
     'icon': None,
@@ -1640,12 +1640,12 @@
     'labels': set({
     }),
     'name': None,
-    'object_id_base': 'Cycle',
+    'object_id_base': 'Dryer cycle',
     'options': dict({
     }),
     'original_device_class': None,
     'original_icon': None,
-    'original_name': 'Cycle',
+    'original_name': 'Dryer cycle',
     'platform': 'smartthings',
     'previous_unique_id': None,
     'suggested_object_id': None,
@@ -1655,10 +1655,10 @@
     'unit_of_measurement': None,
   })
 # ---
-# name: test_all_entities[da_wm_wd_01011][select.trockner_cycle-state]
+# name: test_all_entities[da_wm_wd_01011][select.trockner_dryer_cycle-state]
   StateSnapshot({
     'attributes': ReadOnlyDict({
-      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Trockner Cycle',
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Trockner Dryer cycle',
       <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
         'quick_dry',
         'super_speed',
@@ -1677,7 +1677,7 @@
       ]),
     }),
     'context': <ANY>,
-    'entity_id': 'select.trockner_cycle',
+    'entity_id': 'select.trockner_dryer_cycle',
     'last_changed': <ANY>,
     'last_reported': <ANY>,
     'last_updated': <ANY>,
@@ -2194,103 +2194,6 @@
     'state': 'run',
   })
 # ---
-# name: test_all_entities[da_wm_wm_01011][select.machine_a_laver_cycle-entry]
-  EntityRegistryEntrySnapshot({
-    'aliases': list([
-      None,
-    ]),
-    'area_id': None,
-    'capabilities': dict({
-      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
-        'eco_40_60',
-        'cotton',
-        'quick_wash',
-        'super_speed',
-        'synthetics',
-        'delicates',
-        'towels',
-        'bedding',
-        'shirts',
-        'hygiene_steam',
-        'wool',
-        'outdoor',
-        'sportswear',
-        'colors',
-        'jeans',
-        'baby_care',
-        'silent_wash',
-        'cloudy_day',
-        'drum_clean_plus',
-        'rinse_spin',
-        'drain_spin',
-      ]),
-    }),
-    'config_entry_id': <ANY>,
-    'config_subentry_id': <ANY>,
-    'device_class': None,
-    'device_id': <ANY>,
-    'disabled_by': None,
-    'domain': 'select',
-    'entity_category': None,
-    'entity_id': 'select.machine_a_laver_cycle',
-    'has_entity_name': True,
-    'hidden_by': None,
-    'icon': None,
-    'id': <ANY>,
-    'labels': set({
-    }),
-    'name': None,
-    'object_id_base': 'Cycle',
-    'options': dict({
-    }),
-    'original_device_class': None,
-    'original_icon': None,
-    'original_name': 'Cycle',
-    'platform': 'smartthings',
-    'previous_unique_id': None,
-    'suggested_object_id': None,
-    'supported_features': 0,
-    'translation_key': 'washer_cycle',
-    'unique_id': 'b854ca5f-dc54-140d-6349-758b4d973c41_main_samsungce.washerCycle_washerCycle_washerCycle',
-    'unit_of_measurement': None,
-  })
-# ---
-# name: test_all_entities[da_wm_wm_01011][select.machine_a_laver_cycle-state]
-  StateSnapshot({
-    'attributes': ReadOnlyDict({
-      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Machine à Laver Cycle',
-      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
-        'eco_40_60',
-        'cotton',
-        'quick_wash',
-        'super_speed',
-        'synthetics',
-        'delicates',
-        'towels',
-        'bedding',
-        'shirts',
-        'hygiene_steam',
-        'wool',
-        'outdoor',
-        'sportswear',
-        'colors',
-        'jeans',
-        'baby_care',
-        'silent_wash',
-        'cloudy_day',
-        'drum_clean_plus',
-        'rinse_spin',
-        'drain_spin',
-      ]),
-    }),
-    'context': <ANY>,
-    'entity_id': 'select.machine_a_laver_cycle',
-    'last_changed': <ANY>,
-    'last_reported': <ANY>,
-    'last_updated': <ANY>,
-    'state': 'eco_40_60',
-  })
-# ---
 # name: test_all_entities[da_wm_wm_01011][select.machine_a_laver_detergent_dispense_amount-entry]
   EntityRegistryEntrySnapshot({
     'aliases': list([
@@ -2484,6 +2387,103 @@
     'last_reported': <ANY>,
     'last_updated': <ANY>,
     'state': '1000',
+  })
+# ---
+# name: test_all_entities[da_wm_wm_01011][select.machine_a_laver_washer_cycle-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': list([
+      None,
+    ]),
+    'area_id': None,
+    'capabilities': dict({
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'eco_40_60',
+        'cotton',
+        'quick_wash',
+        'super_speed',
+        'synthetics',
+        'delicates',
+        'towels',
+        'bedding',
+        'shirts',
+        'hygiene_steam',
+        'wool',
+        'outdoor',
+        'sportswear',
+        'colors',
+        'jeans',
+        'baby_care',
+        'silent_wash',
+        'cloudy_day',
+        'drum_clean_plus',
+        'rinse_spin',
+        'drain_spin',
+      ]),
+    }),
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'select',
+    'entity_category': None,
+    'entity_id': 'select.machine_a_laver_washer_cycle',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'object_id_base': 'Washer cycle',
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'Washer cycle',
+    'platform': 'smartthings',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': 'washer_cycle',
+    'unique_id': 'b854ca5f-dc54-140d-6349-758b4d973c41_main_samsungce.washerCycle_washerCycle_washerCycle',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[da_wm_wm_01011][select.machine_a_laver_washer_cycle-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      <EntityStateAttribute.FRIENDLY_NAME: 'friendly_name'>: 'Machine à Laver Washer cycle',
+      <SelectEntityCapabilityAttribute.OPTIONS: 'options'>: list([
+        'eco_40_60',
+        'cotton',
+        'quick_wash',
+        'super_speed',
+        'synthetics',
+        'delicates',
+        'towels',
+        'bedding',
+        'shirts',
+        'hygiene_steam',
+        'wool',
+        'outdoor',
+        'sportswear',
+        'colors',
+        'jeans',
+        'baby_care',
+        'silent_wash',
+        'cloudy_day',
+        'drum_clean_plus',
+        'rinse_spin',
+        'drain_spin',
+      ]),
+    }),
+    'context': <ANY>,
+    'entity_id': 'select.machine_a_laver_washer_cycle',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'eco_40_60',
   })
 # ---
 # name: test_all_entities[da_wm_wm_01011][select.machine_a_laver_water_temperature-entry]

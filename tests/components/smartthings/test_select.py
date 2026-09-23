@@ -478,12 +478,12 @@ async def test_select_cycle(
     """Test the cycle select sends the cycle code of the named cycle."""
     await setup_integration(hass, mock_config_entry)
 
-    assert hass.states.get("select.machine_a_laver_cycle").state == "eco_40_60"
+    assert hass.states.get("select.machine_a_laver_washer_cycle").state == "eco_40_60"
 
     await hass.services.async_call(
         SELECT_DOMAIN,
         SERVICE_SELECT_OPTION,
-        {ATTR_ENTITY_ID: "select.machine_a_laver_cycle", ATTR_OPTION: "cotton"},
+        {ATTR_ENTITY_ID: "select.machine_a_laver_washer_cycle", ATTR_OPTION: "cotton"},
         blocking=True,
     )
     devices.execute_device_command.assert_called_once_with(
@@ -501,6 +501,7 @@ async def test_select_cycle(
     [
         pytest.param({"id": "Table_00"}, id="unknown_table"),
         pytest.param(None, id="no_table"),
+        pytest.param({}, id="table_without_id"),
     ],
 )
 async def test_no_cycle_select_without_known_table(
@@ -518,7 +519,7 @@ async def test_no_cycle_select_without_known_table(
     )
     await setup_integration(hass, mock_config_entry)
 
-    assert hass.states.get("select.machine_a_laver_cycle") is None
+    assert hass.states.get("select.machine_a_laver_washer_cycle") is None
     assert hass.states.get("select.machine_a_laver_spin_level") is not None
 
 

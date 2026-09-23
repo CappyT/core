@@ -409,7 +409,7 @@ def get_cycle_names(status: ComponentStatus, capability: Capability) -> dict[str
         table_status := status[capability].get(Attribute.REFERENCE_TABLE)
     ) is None or not isinstance(table := table_status.value, dict):
         return {}
-    return CYCLE_TO_HA[capability].get(table["id"], {})
+    return CYCLE_TO_HA[capability].get(table.get("id", ""), {})
 
 
 CYCLE_CAPABILITIES_TO_SELECT: dict[Capability, SmartThingsSelectDescription] = {
