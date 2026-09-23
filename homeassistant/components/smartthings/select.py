@@ -554,6 +554,7 @@ class SmartThingsSelectEntity(SmartThingsCycleOptionEntity, SelectEntity):
             self.entity_description.command,
             new_option,
         )
+        self.confirm_cycle_option(new_option)
 
 
 class SmartThingsDishwasherWashingOptionSelectEntity(SmartThingsSelectEntity):

@@ -506,3 +506,42 @@ async def test_dryer_options_follow_cycle(
     state = hass.states.get("select.trockner_dry_level")
     assert state.state == "none"
     assert state.attributes[ATTR_OPTIONS] == ["none"]
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+@pytest.mark.parametrize(
+    ("option", "expected_state"),
+    [
+        pytest.param("1000", "1000", id="value_held_by_cloud"),
+        pytest.param("800", "1200", id="value_awaiting_event"),
+    ],
+)
+async def test_select_option_after_cycle_change(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+    option: str,
+    expected_state: str,
+) -> None:
+    """Test selecting the value the cloud already holds reports it again."""
+    await setup_integration(hass, mock_config_entry)
+
+    await trigger_update(
+        hass,
+        devices,
+        WASHER_ID,
+        Capability.SAMSUNG_CE_WASHER_CYCLE,
+        Attribute.WASHER_CYCLE,
+        "Table_02_Course_1E",
+    )
+    assert hass.states.get("select.machine_a_laver_spin_level").state == "1200"
+
+    # No event follows, as when the cloud already holds the value
+    await hass.services.async_call(
+        SELECT_DOMAIN,
+        SERVICE_SELECT_OPTION,
+        {ATTR_ENTITY_ID: "select.machine_a_laver_spin_level", ATTR_OPTION: option},
+        blocking=True,
+    )
+
+    assert hass.states.get("select.machine_a_laver_spin_level").state == expected_state

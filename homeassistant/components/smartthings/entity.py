@@ -266,6 +266,24 @@ class SmartThingsCycleOptionEntity(SmartThingsEntity):
         if (options := self.cycle_options) is not None and value not in options:
             raise ServiceValidationError("Option is not supported by selected cycle")
 
+    def confirm_cycle_option(self, value: Any) -> None:
+        """Report the device value again once a command has set it.
+
+        The cloud may not send an event when a command sets the value it already
+        holds, which would keep the cycle default reported.
+        """
+        if (
+            self._option_value_stale
+            and self._cycle_option_capability is not None
+            and self._cycle_option_status_attribute is not None
+            and value
+            == self.get_attribute_value(
+                self._cycle_option_capability, self._cycle_option_status_attribute
+            )
+        ):
+            self._option_value_stale = False
+            self.async_write_ha_state()
+
     @property
     @override
     def available(self) -> bool:
