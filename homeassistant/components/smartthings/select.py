@@ -229,6 +229,15 @@ CAPABILITIES_TO_SELECT: dict[Capability | str, SmartThingsSelectDescription] = {
             entity_category=EntityCategory.CONFIG,
         )
     ),
+    Capability.SAMSUNG_CE_DRYER_DRYING_TIME: SmartThingsSelectDescription(
+        key=Capability.SAMSUNG_CE_DRYER_DRYING_TIME,
+        translation_key="drying_time",
+        options_attribute=Attribute.SUPPORTED_DRYING_TIME,
+        status_attribute=Attribute.DRYING_TIME,
+        command=Command.SET_DRYING_TIME,
+        entity_category=EntityCategory.CONFIG,
+        cycle_option_key="dryingTime",
+    ),
     Capability.SAMSUNG_CE_LAMP: SmartThingsSelectDescription(
         key=Capability.SAMSUNG_CE_LAMP,
         translation_key="lamp",
@@ -248,6 +257,15 @@ CAPABILITIES_TO_SELECT: dict[Capability | str, SmartThingsSelectDescription] = {
         command=Command.SET_LEVEL,
         entity_category=EntityCategory.CONFIG,
         entity_registry_enabled_default=False,
+    ),
+    Capability.CUSTOM_DRYER_DRY_LEVEL: SmartThingsSelectDescription(
+        key=Capability.CUSTOM_DRYER_DRY_LEVEL,
+        translation_key="dry_level",
+        options_attribute=Attribute.SUPPORTED_DRYER_DRY_LEVEL,
+        status_attribute=Attribute.DRYER_DRY_LEVEL,
+        command=Command.SET_DRYER_DRY_LEVEL,
+        entity_category=EntityCategory.CONFIG,
+        cycle_option_key="dryingLevel",
     ),
     Capability.CUSTOM_WASHER_SPIN_LEVEL: SmartThingsSelectDescription(
         key=Capability.CUSTOM_WASHER_SPIN_LEVEL,

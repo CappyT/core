@@ -462,3 +462,47 @@ async def test_select_option_kept_when_cycle_is_republished(
     )
 
     assert hass.states.get("select.machine_a_laver_spin_level").state == "800"
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wd_01011"])
+async def test_dryer_options_follow_cycle(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+) -> None:
+    """Test the drying time and dry level follow the selected dryer cycle."""
+    await setup_integration(hass, mock_config_entry)
+
+    state = hass.states.get("select.trockner_drying_time")
+    assert state.state == "0"
+    assert state.attributes[ATTR_OPTIONS] == ["0"]
+    state = hass.states.get("select.trockner_dry_level")
+    assert state.state == "normal"
+    assert state.attributes[ATTR_OPTIONS] == ["damp", "less", "normal", "more"]
+
+    await trigger_update(
+        hass,
+        devices,
+        "3d39866c-7716-5259-44f0-fd7025efd85f",
+        Capability.SAMSUNG_CE_DRYER_CYCLE,
+        Attribute.DRYER_CYCLE,
+        "Table_03_Course_27",
+    )
+
+    state = hass.states.get("select.trockner_drying_time")
+    assert state.state == "20"
+    assert state.attributes[ATTR_OPTIONS] == [
+        "20",
+        "30",
+        "40",
+        "50",
+        "60",
+        "90",
+        "120",
+        "150",
+        "180",
+        "240",
+    ]
+    state = hass.states.get("select.trockner_dry_level")
+    assert state.state == "none"
+    assert state.attributes[ATTR_OPTIONS] == ["none"]

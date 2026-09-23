@@ -301,6 +301,34 @@
           "upper_express": "Upper express"
         }
       },
+      "dry_level": {
+        "name": "Dry level",
+        "state": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "30": "30",
+          "60": "60",
+          "90": "90",
+          "120": "120",
+          "150": "150",
+          "180": "180",
+          "210": "210",
+          "240": "240",
+          "270": "270",
+          "cupboard": "Cupboard",
+          "damp": "Damp",
+          "less": "[%key:component::smartthings::entity::select::detergent_amount::state::less%]",
+          "more": "More",
+          "none": "None",
+          "normal": "[%key:common::state::normal%]",
+          "very": "Very"
+        }
+      },
+      "drying_time": {
+        "name": "Drying time",
+        "unit_of_measurement": "minutes"
+      },
       "dust_filter_alarm": {
         "name": "Dust filter alarm threshold",
         "unit_of_measurement": "hours"
