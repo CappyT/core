@@ -477,6 +477,7 @@ class SmartThingsSwitch(SmartThingsCycleOptionEntity, SwitchEntity):
             self.switch_capability,
             self.entity_description.off_command,
         )
+        self.confirm_cycle_option(self.entity_description.off_key)
 
     @override
     async def async_turn_on(self, **kwargs: Any) -> None:
@@ -486,6 +487,7 @@ class SmartThingsSwitch(SmartThingsCycleOptionEntity, SwitchEntity):
             self.switch_capability,
             self.entity_description.on_command,
         )
+        self.confirm_cycle_option(self.entity_description.on_key)
 
     def _current_state(self) -> Any:
         return self.resolve_cycle_option_value(
@@ -515,6 +517,7 @@ class SmartThingsCommandSwitch(SmartThingsSwitch):
             self.entity_description.command,
             self.entity_description.off_key,
         )
+        self.confirm_cycle_option(self.entity_description.off_key)
 
     @override
     async def async_turn_on(self, **kwargs: Any) -> None:
@@ -525,6 +528,7 @@ class SmartThingsCommandSwitch(SmartThingsSwitch):
             self.entity_description.command,
             self.entity_description.on_key,
         )
+        self.confirm_cycle_option(self.entity_description.on_key)
 
 
 class SmartThingsDishwasherWashingOptionSwitch(SmartThingsCommandSwitch):

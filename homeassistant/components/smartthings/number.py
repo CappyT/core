@@ -131,6 +131,7 @@ class SmartThingsWasherRinseCyclesNumberEntity(
             Command.SET_WASHER_RINSE_CYCLES,
             str(int(value)),
         )
+        self.confirm_cycle_option(str(int(value)))
 
 
 class SmartThingsHoodNumberEntity(SmartThingsEntity, NumberEntity):
