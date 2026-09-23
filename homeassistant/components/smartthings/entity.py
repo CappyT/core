@@ -146,14 +146,34 @@ class SmartThingsEntity(Entity):
 class SmartThingsCycleOptionEntity(SmartThingsEntity):
     """Defines a SmartThings entity for an option of a washer/dryer cycle."""
 
-    _cycle_capability: Capability | None = None
-    _cycle_option_key: str | None = None
-    _cycle_option_capability: Capability | None = None
-    _cycle_option_status_attribute: Attribute | None = None
     _option_value_stale: bool = False
     # Status objects are shared by all entities of a device, so each entity keeps
     # its own copy of the cycle to detect a change
     _last_cycle: str | None = None
+
+    def __init__(
+        self,
+        client: SmartThings,
+        device: FullDevice,
+        capabilities: set[Capability],
+        *,
+        component: str = MAIN,
+        cycle_option_key: str | None = None,
+        option_capability: Capability | None = None,
+        option_status_attribute: Attribute | None = None,
+    ) -> None:
+        """Initialize the instance."""
+        self._cycle_capability = (
+            get_cycle_capability(device, cycle_option_key, component)
+            if cycle_option_key is not None
+            else None
+        )
+        if self._cycle_capability is not None:
+            capabilities = capabilities | {self._cycle_capability}
+        super().__init__(client, device, capabilities, component=component)
+        self._cycle_option_key = cycle_option_key
+        self._cycle_option_capability = option_capability
+        self._cycle_option_status_attribute = option_status_attribute
 
     @override
     async def async_added_to_hass(self) -> None:
@@ -198,6 +218,8 @@ class SmartThingsCycleOptionEntity(SmartThingsEntity):
         ):
             cycle = normalize_cycle_value(event.value)
             if cycle != self._last_cycle:
+                # Events carry no timestamp, so a value published just before the
+                # cycle is treated as stale as well
                 self._option_value_stale = True
                 self._last_cycle = cycle
         elif (
@@ -224,9 +246,9 @@ class SmartThingsCycleOptionEntity(SmartThingsEntity):
             return None
         supported_options: dict[str, Any] = next(
             (
-                cycle["supportedOptions"]
+                cycle.get("supportedOptions", {})
                 for cycle in supported_cycles
-                if cycle["cycle"].lower() == current_cycle
+                if cycle.get("cycle", "").lower() == current_cycle
             ),
             {},
         )
@@ -241,8 +263,8 @@ class SmartThingsCycleOptionEntity(SmartThingsEntity):
         """
         if (option := self._cycle_option) is None:
             return None
-        if option["options"]:
-            return option["options"]
+        if options := option.get("options"):
+            return options
         return [option["default"]] if "default" in option else []
 
     def resolve_cycle_option_value(self, raw_value: Any) -> Any:
@@ -251,15 +273,14 @@ class SmartThingsCycleOptionEntity(SmartThingsEntity):
         Appliances do not republish their options when the cycle is changed
         remotely, so the cloud keeps reporting the values of the previous cycle.
         Report what the selected cycle defaults to until the device sends a fresh
-        value, which is also what the SmartThings app shows.
+        value, which is also what the SmartThings app shows. A cycle that locks the
+        option always reports its default.
         """
-        if (option := self._cycle_option) is None or not (
-            options := self.cycle_options
-        ):
+        if (option := self._cycle_option) is None or "default" not in option:
             return raw_value
-        if not self._option_value_stale and raw_value in options:
-            return raw_value
-        return option.get("default", raw_value)
+        if self._option_value_stale or not option.get("options"):
+            return option["default"]
+        return raw_value
 
     def validate_cycle_option(self, value: Any) -> None:
         """Raise if the selected cycle does not allow the value."""
