@@ -18,11 +18,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from . import FullDevice, SmartThingsConfigEntry
 from .const import INVALID_SWITCH_CATEGORIES, MAIN
-from .entity import (
-    SmartThingsCycleOptionEntity,
-    SmartThingsEntity,
-    get_cycle_capability,
-)
+from .entity import SmartThingsCycleOptionEntity, SmartThingsEntity
 from .util import deprecate_entity
 
 CAPABILITIES = (
@@ -441,19 +437,15 @@ class SmartThingsSwitch(SmartThingsCycleOptionEntity, SwitchEntity):
         extra_capabilities: set[Capability] | None = None,
     ) -> None:
         """Initialize the switch."""
-        capabilities = {capability} | (extra_capabilities or set())
-        cycle_capability = (
-            get_cycle_capability(device, entity_description.cycle_option_key, component)
-            if entity_description.cycle_option_key is not None
-            else None
+        super().__init__(
+            client,
+            device,
+            {capability} | (extra_capabilities or set()),
+            component=component,
+            cycle_option_key=entity_description.cycle_option_key,
+            option_capability=capability,
+            option_status_attribute=entity_description.status_attribute,
         )
-        if cycle_capability is not None:
-            capabilities.add(cycle_capability)
-        super().__init__(client, device, capabilities, component=component)
-        self._cycle_capability = cycle_capability
-        self._cycle_option_key = entity_description.cycle_option_key
-        self._cycle_option_capability = capability
-        self._cycle_option_status_attribute = entity_description.status_attribute
         self.entity_description = entity_description
         self.switch_capability = capability
         self._attr_unique_id = (
@@ -511,24 +503,20 @@ class SmartThingsCommandSwitch(SmartThingsSwitch):
     @override
     async def async_turn_off(self, **kwargs: Any) -> None:
         """Turn the switch off."""
-        self.validate_cycle_option(self.entity_description.off_key)
         await self.execute_device_command(
             self.switch_capability,
             self.entity_description.command,
             self.entity_description.off_key,
         )
-        self.confirm_cycle_option(self.entity_description.off_key)
 
     @override
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Turn the switch on."""
-        self.validate_cycle_option(self.entity_description.on_key)
         await self.execute_device_command(
             self.switch_capability,
             self.entity_description.command,
             self.entity_description.on_key,
         )
-        self.confirm_cycle_option(self.entity_description.on_key)
 
 
 class SmartThingsDishwasherWashingOptionSwitch(SmartThingsCommandSwitch):

@@ -14,7 +14,12 @@ from homeassistant.components.select import (
     SERVICE_SELECT_OPTION,
 )
 from homeassistant.components.smartthings import MAIN
-from homeassistant.const import ATTR_ENTITY_ID, STATE_UNAVAILABLE, Platform
+from homeassistant.const import (
+    ATTR_ENTITY_ID,
+    STATE_UNAVAILABLE,
+    STATE_UNKNOWN,
+    Platform,
+)
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ServiceValidationError
 from homeassistant.helpers import entity_registry as er
@@ -515,6 +520,35 @@ async def test_no_cycle_select_without_known_table(
 
     assert hass.states.get("select.machine_a_laver_cycle") is None
     assert hass.states.get("select.machine_a_laver_spin_level") is not None
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+async def test_select_fresh_value_outside_cycle_options(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+) -> None:
+    """Test a fresh value the selected cycle does not list is not replaced."""
+    await setup_integration(hass, mock_config_entry)
+
+    await trigger_update(
+        hass,
+        devices,
+        WASHER_ID,
+        Capability.SAMSUNG_CE_WASHER_CYCLE,
+        Attribute.WASHER_CYCLE,
+        "Table_02_Course_1E",
+    )
+    await trigger_update(
+        hass,
+        devices,
+        WASHER_ID,
+        Capability.CUSTOM_WASHER_SPIN_LEVEL,
+        Attribute.WASHER_SPIN_LEVEL,
+        "1400",
+    )
+
+    assert hass.states.get("select.machine_a_laver_spin_level").state == STATE_UNKNOWN
 
 
 @pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
