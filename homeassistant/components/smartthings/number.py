@@ -1,12 +1,13 @@
 """Support for number entities through the SmartThings cloud API."""
 
-from typing import override
+from typing import cast, override
 
 from pysmartthings import Attribute, Capability, Command, SmartThings
 
 from homeassistant.components.number import NumberDeviceClass, NumberEntity, NumberMode
-from homeassistant.const import EntityCategory
+from homeassistant.const import EntityCategory, UnitOfTime
 from homeassistant.core import HomeAssistant
+from homeassistant.exceptions import ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from . import FullDevice, SmartThingsConfigEntry
@@ -47,6 +48,15 @@ async def async_setup_entry(
             Attribute.COOLING_SETPOINT_RANGE
         ].value
         is not None
+    )
+    entities.extend(
+        SmartThingsDelayEndNumberEntity(entry_data.client, device, capability)
+        for device in entry_data.devices.values()
+        for capability in (
+            Capability.SAMSUNG_CE_WASHER_DELAY_END,
+            Capability.SAMSUNG_CE_DRYER_DELAY_END,
+        )
+        if capability in device.status[MAIN]
     )
     async_add_entities(entities)
 
@@ -248,5 +258,73 @@ class SmartThingsRefrigeratorTemperatureNumberEntity(SmartThingsEntity, NumberEn
         await self.execute_device_command(
             Capability.THERMOSTAT_COOLING_SETPOINT,
             Command.SET_COOLING_SETPOINT,
+            int(value),
+        )
+
+
+class SmartThingsDelayEndNumberEntity(SmartThingsEntity, NumberEntity):
+    """Define a SmartThings number."""
+
+    _attr_translation_key = "delay_end"
+    _attr_device_class = NumberDeviceClass.DURATION
+    _attr_native_unit_of_measurement = UnitOfTime.MINUTES
+    # 0 cancels a pending delay, so it stays allowed even though the washer reports
+    # a minimum reservable time that bounds non-zero values
+    _attr_native_min_value = 0
+    _attr_native_max_value = 1440
+    _attr_native_step = 1.0
+    _attr_mode = NumberMode.BOX
+    _attr_entity_category = EntityCategory.CONFIG
+
+    def __init__(
+        self, client: SmartThings, device: FullDevice, capability: Capability
+    ) -> None:
+        """Initialize the instance."""
+        super().__init__(client, device, {capability, Capability.REMOTE_CONTROL_STATUS})
+        self.capability = capability
+        self._attr_unique_id = (
+            f"{device.device.device_id}_{MAIN}"
+            f"_{capability}"
+            f"_{Attribute.REMAINING_TIME}"
+            f"_{Attribute.REMAINING_TIME}"
+        )
+
+    @property
+    @override
+    def native_value(self) -> int | None:
+        """Return the current value."""
+        if (
+            value := self.get_attribute_value(self.capability, Attribute.REMAINING_TIME)
+        ) is None:
+            return None
+        return int(value)
+
+    @override
+    async def async_set_native_value(self, value: float) -> None:
+        """Set the value."""
+        if (
+            Capability.REMOTE_CONTROL_STATUS in self._internal_state
+            and self.get_attribute_value(
+                Capability.REMOTE_CONTROL_STATUS, Attribute.REMOTE_CONTROL_ENABLED
+            )
+            == "false"
+        ):
+            raise ServiceValidationError(
+                "Can only be updated when remote control is enabled"
+            )
+        minimum = 0
+        if (
+            status := self._internal_state[self.capability].get(
+                Attribute.MINIMUM_RESERVABLE_TIME
+            )
+        ) is not None:
+            minimum = int(cast(int | str | None, status.value) or 0)
+        if 0 < value < minimum:
+            raise ServiceValidationError(
+                f"The delay must be 0 or at least {minimum} minutes"
+            )
+        await self.execute_device_command(
+            self.capability,
+            Command.SET_DELAY_TIME,
             int(value),
         )

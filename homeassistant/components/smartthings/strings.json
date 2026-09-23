@@ -241,6 +241,9 @@
       "cooler_temperature": {
         "name": "Fridge temperature"
       },
+      "delay_end": {
+        "name": "Delay end"
+      },
       "freezer_temperature": {
         "name": "Freezer temperature"
       },

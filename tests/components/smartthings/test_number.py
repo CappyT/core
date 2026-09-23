@@ -13,11 +13,18 @@ from homeassistant.components.number import (
     SERVICE_SET_VALUE,
 )
 from homeassistant.components.smartthings import MAIN
-from homeassistant.const import ATTR_ENTITY_ID, STATE_UNAVAILABLE, Platform
+from homeassistant.const import (
+    ATTR_ENTITY_ID,
+    STATE_UNAVAILABLE,
+    STATE_UNKNOWN,
+    Platform,
+)
 from homeassistant.core import HomeAssistant
+from homeassistant.exceptions import ServiceValidationError
 from homeassistant.helpers import entity_registry as er
 
 from . import (
+    set_attribute_value,
     setup_integration,
     snapshot_smartthings_entities,
     trigger_health_update,
@@ -124,3 +131,89 @@ async def test_availability_at_start(
     assert (
         hass.states.get("number.theater_washer_rinse_cycles").state == STATE_UNAVAILABLE
     )
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+async def test_delay_end_without_value(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+) -> None:
+    """Test the delay end number when the washer reports no remaining time."""
+    set_attribute_value(
+        devices,
+        Capability.SAMSUNG_CE_WASHER_DELAY_END,
+        Attribute.REMAINING_TIME,
+        None,
+    )
+    await setup_integration(hass, mock_config_entry)
+
+    assert hass.states.get("number.machine_a_laver_delay_end").state == STATE_UNKNOWN
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+@pytest.mark.parametrize("value", [0, 165, 300])
+async def test_set_delay_end(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+    value: int,
+) -> None:
+    """Test setting a delay of 0 or at least the minimum reservable time."""
+    await setup_integration(hass, mock_config_entry)
+
+    await hass.services.async_call(
+        NUMBER_DOMAIN,
+        SERVICE_SET_VALUE,
+        {ATTR_ENTITY_ID: "number.machine_a_laver_delay_end", ATTR_VALUE: value},
+        blocking=True,
+    )
+    devices.execute_device_command.assert_called_once_with(
+        "b854ca5f-dc54-140d-6349-758b4d973c41",
+        Capability.SAMSUNG_CE_WASHER_DELAY_END,
+        Command.SET_DELAY_TIME,
+        MAIN,
+        argument=value,
+    )
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+@pytest.mark.parametrize(
+    ("remote_control", "value", "message"),
+    [
+        pytest.param(
+            "true", 60, "The delay must be 0 or at least 165 minutes", id="too_short"
+        ),
+        pytest.param(
+            "false",
+            300,
+            "Can only be updated when remote control is enabled",
+            id="no_remote_control",
+        ),
+    ],
+)
+async def test_set_delay_end_rejected(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+    remote_control: str,
+    value: int,
+    message: str,
+) -> None:
+    """Test a delay the washer cannot accept is rejected."""
+    set_attribute_value(
+        devices,
+        Capability.REMOTE_CONTROL_STATUS,
+        Attribute.REMOTE_CONTROL_ENABLED,
+        remote_control,
+    )
+    await setup_integration(hass, mock_config_entry)
+
+    with pytest.raises(ServiceValidationError, match=message):
+        await hass.services.async_call(
+            NUMBER_DOMAIN,
+            SERVICE_SET_VALUE,
+            {ATTR_ENTITY_ID: "number.machine_a_laver_delay_end", ATTR_VALUE: value},
+            blocking=True,
+        )
+    devices.execute_device_command.assert_not_called()
