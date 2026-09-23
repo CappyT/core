@@ -377,6 +377,16 @@
           "upper": "Upper"
         }
       },
+      "softener_amount": {
+        "name": "Softener dispense amount",
+        "state": {
+          "custom": "[%key:component::smartthings::entity::select::detergent_amount::state::custom%]",
+          "extra": "[%key:component::smartthings::entity::select::detergent_amount::state::extra%]",
+          "less": "[%key:component::smartthings::entity::select::detergent_amount::state::less%]",
+          "none": "[%key:common::state::off%]",
+          "standard": "[%key:component::smartthings::entity::select::detergent_amount::state::standard%]"
+        }
+      },
       "soil_level": {
         "name": "Soil level",
         "state": {
@@ -510,6 +520,25 @@
       },
       "cooler_temperature": {
         "name": "Fridge temperature"
+      },
+      "detergent_level": {
+        "name": "Detergent level",
+        "state": {
+          "empty": "[%key:common::state::empty%]",
+          "less": "[%key:component::smartthings::entity::select::detergent_amount::state::less%]",
+          "normal": "[%key:common::state::normal%]"
+        }
+      },
+      "detergent_remaining_amount": {
+        "name": "Remaining detergent"
+      },
+      "detergent_type": {
+        "name": "Detergent type",
+        "state": {
+          "dry_sheet": "Dry sheet",
+          "liquid": "Liquid",
+          "none": "[%key:component::smartthings::entity::sensor::washer_job_state::state::none%]"
+        }
       },
       "dishwasher_job_state": {
         "name": "Job state",
@@ -909,6 +938,25 @@
           "clear": "[%key:component::smartthings::entity::sensor::carbon_monoxide_detector::state::clear%]",
           "detected": "[%key:component::smartthings::entity::sensor::carbon_monoxide_detector::state::detected%]",
           "tested": "[%key:component::smartthings::entity::sensor::carbon_monoxide_detector::state::tested%]"
+        }
+      },
+      "softener_level": {
+        "name": "Softener level",
+        "state": {
+          "empty": "[%key:common::state::empty%]",
+          "less": "[%key:component::smartthings::entity::select::detergent_amount::state::less%]",
+          "normal": "[%key:common::state::normal%]"
+        }
+      },
+      "softener_remaining_amount": {
+        "name": "Remaining softener"
+      },
+      "softener_type": {
+        "name": "Softener type",
+        "state": {
+          "dry_sheet": "[%key:component::smartthings::entity::sensor::detergent_type::state::dry_sheet%]",
+          "liquid": "[%key:component::smartthings::entity::sensor::detergent_type::state::liquid%]",
+          "none": "[%key:component::smartthings::entity::sensor::washer_job_state::state::none%]"
         }
       },
       "stick_cleaner_dust_bag_usage": {

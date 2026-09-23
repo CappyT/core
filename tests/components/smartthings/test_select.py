@@ -29,6 +29,8 @@ from . import (
 
 from tests.common import MockConfigEntry
 
+WASHER_ID = "b854ca5f-dc54-140d-6349-758b4d973c41"
+
 
 @pytest.mark.usefixtures("entity_registry_enabled_by_default")
 async def test_all_entities(
@@ -370,4 +372,54 @@ async def test_select_dishwasher_washing_option(
                 },
             ),
         ]
+    )
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+async def test_select_softener_amount(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+) -> None:
+    """Test selecting the auto dispense softener amount."""
+    set_attribute_value(
+        devices,
+        Capability.CUSTOM_DISABLED_CAPABILITIES,
+        Attribute.DISABLED_CAPABILITIES,
+        [],
+    )
+    set_attribute_value(
+        devices,
+        Capability.SAMSUNG_CE_AUTO_DISPENSE_SOFTENER,
+        Attribute.SUPPORTED_AMOUNT,
+        ["none", "less", "standard", "extra"],
+    )
+    set_attribute_value(
+        devices,
+        Capability.SAMSUNG_CE_AUTO_DISPENSE_SOFTENER,
+        Attribute.AMOUNT,
+        "standard",
+    )
+    await setup_integration(hass, mock_config_entry)
+
+    assert (
+        hass.states.get("select.machine_a_laver_softener_dispense_amount").state
+        == "standard"
+    )
+
+    await hass.services.async_call(
+        SELECT_DOMAIN,
+        SERVICE_SELECT_OPTION,
+        {
+            ATTR_ENTITY_ID: "select.machine_a_laver_softener_dispense_amount",
+            ATTR_OPTION: "less",
+        },
+        blocking=True,
+    )
+    devices.execute_device_command.assert_called_once_with(
+        WASHER_ID,
+        Capability.SAMSUNG_CE_AUTO_DISPENSE_SOFTENER,
+        Command.SET_AMOUNT,
+        MAIN,
+        argument="less",
     )

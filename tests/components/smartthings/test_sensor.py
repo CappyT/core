@@ -450,3 +450,33 @@ async def test_stick_cleaner_operating_state_is_mapped(
 
     assert (state := hass.states.get("sensor.stick_vacuum"))
     assert state.state == expected_state
+
+
+@pytest.mark.parametrize("device_fixture", ["da_wm_wm_01011"])
+@pytest.mark.parametrize(
+    ("value", "exists"),
+    [
+        pytest.param("normal", True, id="measured"),
+        pytest.param("unknown", False, id="unknown"),
+        pytest.param(None, False, id="none"),
+    ],
+)
+async def test_dispenser_level_support(
+    hass: HomeAssistant,
+    devices: AsyncMock,
+    mock_config_entry: MockConfigEntry,
+    value: str | None,
+    exists: bool,
+) -> None:
+    """Test the dispenser level sensor exists only when the washer measures it."""
+    set_attribute_value(
+        devices,
+        Capability.SAMSUNG_CE_AUTO_DISPENSE_DETERGENT,
+        Attribute.REMAINING_AMOUNT,
+        value,
+    )
+    await setup_integration(hass, mock_config_entry)
+
+    assert (
+        hass.states.get("sensor.machine_a_laver_detergent_level") is not None
+    ) is exists

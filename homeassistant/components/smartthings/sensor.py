@@ -141,6 +141,26 @@ STICK_CLEANER_STATUS = {
     "UVPaused": "uv_paused",
 }
 
+DISPENSER_TYPE_MAP = {
+    "none": "none",
+    "liquid": "liquid",
+    "drySheet": "dry_sheet",
+}
+
+# "unknown" is left out on purpose so it resolves to an unknown state
+DISPENSER_LEVEL_MAP = {
+    "empty": "empty",
+    "less": "less",
+    "normal": "normal",
+}
+
+
+def _dispenser_level_supported(status: Status) -> bool:
+    """Return whether the washer measures the level of an auto dispenser tank."""
+    # Washers without a level sensor report "unknown" or nothing at all
+    return status.value not in (None, "unknown")
+
+
 WASHER_OPTIONS = ["pause", "run", "stop"]
 
 
@@ -359,6 +379,40 @@ CAPABILITY_TO_SENSORS: dict[
                 state_class=SensorStateClass.MEASUREMENT,
             )
         ]
+    },
+    Capability.SAMSUNG_CE_AUTO_DISPENSE_DETERGENT: {
+        Attribute.REMAINING_AMOUNT: [
+            SmartThingsSensorEntityDescription(
+                key=Attribute.REMAINING_AMOUNT,
+                translation_key="detergent_level",
+                device_class=SensorDeviceClass.ENUM,
+                options=list(DISPENSER_LEVEL_MAP.values()),
+                options_map=DISPENSER_LEVEL_MAP,
+                entity_category=EntityCategory.DIAGNOSTIC,
+                exists_fn=_dispenser_level_supported,
+            )
+        ]
+    },
+    Capability.SAMSUNG_CE_DETERGENT_STATE: {
+        Attribute.REMAINING_AMOUNT: [
+            SmartThingsSensorEntityDescription(
+                key=Attribute.REMAINING_AMOUNT,
+                translation_key="detergent_remaining_amount",
+                state_class=SensorStateClass.MEASUREMENT,
+                entity_category=EntityCategory.DIAGNOSTIC,
+                entity_registry_enabled_default=False,
+            )
+        ],
+        Attribute.DETERGENT_TYPE: [
+            SmartThingsSensorEntityDescription(
+                key=Attribute.DETERGENT_TYPE,
+                translation_key="detergent_type",
+                device_class=SensorDeviceClass.ENUM,
+                options=list(DISPENSER_TYPE_MAP.values()),
+                options_map=DISPENSER_TYPE_MAP,
+                entity_category=EntityCategory.DIAGNOSTIC,
+            )
+        ],
     },
     Capability.DISHWASHER_OPERATING_STATE: {
         Attribute.MACHINE_STATE: [
@@ -951,6 +1005,40 @@ CAPABILITY_TO_SENSORS: dict[
             )
         ]
     },
+    Capability.SAMSUNG_CE_AUTO_DISPENSE_SOFTENER: {
+        Attribute.REMAINING_AMOUNT: [
+            SmartThingsSensorEntityDescription(
+                key=Attribute.REMAINING_AMOUNT,
+                translation_key="softener_level",
+                device_class=SensorDeviceClass.ENUM,
+                options=list(DISPENSER_LEVEL_MAP.values()),
+                options_map=DISPENSER_LEVEL_MAP,
+                entity_category=EntityCategory.DIAGNOSTIC,
+                exists_fn=_dispenser_level_supported,
+            )
+        ]
+    },
+    Capability.SAMSUNG_CE_SOFTENER_STATE: {
+        Attribute.REMAINING_AMOUNT: [
+            SmartThingsSensorEntityDescription(
+                key=Attribute.REMAINING_AMOUNT,
+                translation_key="softener_remaining_amount",
+                state_class=SensorStateClass.MEASUREMENT,
+                entity_category=EntityCategory.DIAGNOSTIC,
+                entity_registry_enabled_default=False,
+            )
+        ],
+        Attribute.SOFTENER_TYPE: [
+            SmartThingsSensorEntityDescription(
+                key=Attribute.SOFTENER_TYPE,
+                translation_key="softener_type",
+                device_class=SensorDeviceClass.ENUM,
+                options=list(DISPENSER_TYPE_MAP.values()),
+                options_map=DISPENSER_TYPE_MAP,
+                entity_category=EntityCategory.DIAGNOSTIC,
+            )
+        ],
+    },
     Capability.TEMPERATURE_MEASUREMENT: {
         Attribute.TEMPERATURE: [
             SmartThingsSensorEntityDescription(
@@ -1316,6 +1404,7 @@ UNITS = {
     "F": UnitOfTemperature.FAHRENHEIT,
     "Celsius": UnitOfTemperature.CELSIUS,
     "Fahrenheit": UnitOfTemperature.FAHRENHEIT,
+    "cc": UnitOfVolume.MILLILITERS,
     "ccf": UnitOfVolume.CENTUM_CUBIC_FEET,
     "lux": LIGHT_LUX,
     "mG": None,
